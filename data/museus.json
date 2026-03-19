@@ -1,0 +1,245 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://esbaluard.org/#museum",
+            "identifier": "M001",
+            "url": "https://esbaluard.org/",
+            "name": "Es Baluard Museu d'Art Contemporani de Palma",
+            "alternateName": "Es Baluard",
+            "description": "Museo de arte moderno y contemporáneo situado en Palma. Cuenta con un fondo de más de 700 obras de artistas vinculados al ámbito balear y mediterráneo.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Palma de Mallorca",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Plaza Porta de Santa Catalina, 10"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Palma"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.5696,
+                "longitude": 2.6402
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Es+Baluard+Museu+d'Art+Contemporani+de+Palma",
+            "telephone": "+34 971 90 82 00",
+            "sameAs": ["https://es.wikipedia.org/wiki/Es_Baluard"],
+            "openingHours": "Tu-Sa 10:00-20:00; Su 10:00-15:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "reviewCount": "3200"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "2004"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.museudemenorca.com/#museum",
+            "identifier": "M002",
+            "url": "https://www.museudemenorca.com/",
+            "name": "Museu de Menorca",
+            "alternateName": "Museo de Menorca",
+            "description": "Ubicado en un antiguo convento franciscano en Mahón, es la institución museística más importante de la isla, recogiendo la historia de Menorca desde la prehistoria (cultura talayótica) hasta la actualidad.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Mahón",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Pla des Monestir, 9"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Mahón"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8883,
+                "longitude": 4.2655
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+de+Menorca",
+            "telephone": "+34 971 35 09 55",
+            "sameAs": [],
+            "openingHours": "Tu,Th 10:00-19:00; We,Fr,Sa,Su 10:00-14:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.4",
+                "reviewCount": "850"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Historia y Arqueología"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1889"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.eivissa.es/mace/#museum",
+            "identifier": "M003",
+            "url": "https://mace.eivissa.es/",
+            "name": "Museu d'Art Contemporani d'Eivissa",
+            "alternateName": "MACE",
+            "description": "Situado en la zona amurallada de Dalt Vila, este museo alberga una destacada colección de arte contemporáneo creada en las islas Pitiusas a partir de la década de 1960.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ibiza",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Ronda de Narcís Puget, s/n"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Ibiza"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.9075,
+                "longitude": 1.4361
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+d'Art+Contemporani+d'Eivissa",
+            "telephone": "+34 971 30 27 23",
+            "sameAs": [],
+            "openingHours": "Tu-Su 10:00-14:00",
+            "isAccessibleForFree": true,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.3",
+                "reviewCount": "410"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1969"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://miromallorca.com/#museum",
+            "identifier": "M004",
+            "url": "https://miromallorca.com/",
+            "name": "Fundació Miró Mallorca",
+            "alternateName": "Fundación Pilar y Joan Miró",
+            "description": "Institución cultural en Palma de Mallorca basada en los talleres que el artista Joan Miró legó al público. Ofrece una visión única de su proceso creativo.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Palma de Mallorca",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer de Saridakis, 29"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Palma"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.5553,
+                "longitude": 2.6109
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Fundacio+Miro+Mallorca",
+            "telephone": "+34 971 70 14 20",
+            "sameAs": ["https://es.wikipedia.org/wiki/Fundaci%C3%B3n_Pilar_y_Joan_Mir%C3%B3"],
+            "openingHours": "Tu-Sa 10:00-18:00; Su 10:00-15:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "4150"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo / Surrealismo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1981"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://maef.eu/#museum",
+            "identifier": "M005",
+            "url": "https://maef.eu/",
+            "name": "Museu Arqueològic d'Eivissa i Formentera",
+            "alternateName": "MAEF",
+            "description": "Museo que conserva y expone los restos históricos encontrados en las islas Pitiusas, abarcando desde la prehistoria hasta la época islámica.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ibiza",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Vía Romana, 31"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Ibiza"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.9069,
+                "longitude": 1.4308
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+Arqueològic+d'Eivissa+i+Formentera",
+            "telephone": "+34 971 30 17 71",
+            "sameAs": ["https://es.wikipedia.org/wiki/Museo_Arqueol%C3%B3gico_de_Ibiza_y_Formentera"],
+            "openingHours": "Tu-Sa 09:00-15:00; Su 10:00-14:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.2",
+                "reviewCount": "380"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arqueología"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1907"
+                }
+            ]
+        }
+    ]
+}

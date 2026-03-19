@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guia de museus d'art i disseny de les Illes Balears. Descobreix Es Baluard, Fundació Miró, MACE, Museu de Menorca i MAEF.">
+    <meta name="keywords" content="museus, art, disseny, Illes Balears, Mallorca, Menorca, Eivissa, Formentera, Palma, cultura">
+    <meta name="author" content="Tecnologia Multimèdia - UIB">
+    <meta name="theme-color" content="#1a3a4a">
+    <title>Museus Illes Balears | Art i Disseny</title>
+    <link rel="icon" type="image/svg+xml" href="media/logo.svg">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main" class="skip-link">Salta al contingut principal</a>
+
+    <div id="search-sticky" class="search-sticky" aria-hidden="true">
+        <label for="search-sticky-input" class="visually-hidden">Cercar museus</label>
+        <input type="search" id="search-sticky-input" placeholder="Cercar museus..." autocomplete="off">
+    </div>
+
+    <div class="drawer-overlay" aria-hidden="true"></div>
+
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <a href="index.html" class="logo" aria-label="Museus Illes Balears - Inici">
+                <svg class="logo-svg" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M24 4L6 14v20l18 10 18-10V14L24 4zm0 4.5l12 6.75v13.5L24 35.25 12 28.75v-13.5L24 8.5z" fill="currentColor"/>
+                </svg>
+                <span>Museus Illes Balears</span>
+            </a>
+            <div class="header-widgets">
+                <div id="weather-widget" class="weather-widget weather-loading" aria-label="Meteorologia">
+                    <span class="weather-loading-text">Carregant...</span>
+                </div>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Obrir menú de navegació">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+            <nav id="main-nav" class="main-nav drawer-nav" role="navigation" aria-label="Navegació principal" aria-expanded="false">
+                <ul>
+                    <li><a href="index.html" class="active">Inici</a></li>
+                    <li><a href="index.html#museus">Museus</a></li>
+                    <li><a href="index.html#rutes">Rutes</a></li>
+                    <li><a href="index.html#mapa">Mapa</a></li>
+                    <li><a href="index.html#favoritos">Favorits</a></li>
+                    <li><a href="docs/guia.html">Guia</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="main-content" role="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h1 id="hero-title">Museus d'Art i Disseny a les Illes Balears</h1>
+                <p class="hero-subtitle">Descobreix la riquesa cultural de Mallorca, Menorca, Eivissa i Formentera</p>
+                <div class="hero-actions">
+                    <a href="#museus" class="btn btn-primary">Explorar museus</a>
+                    <button type="button" class="btn btn-secondary" id="btn-geolocation" aria-label="Trobar museus propers">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Museus propers
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="media/hero.svg" alt="Museus d'art i disseny de les Illes Balears" width="800" height="450" loading="eager" decoding="async">
+            </div>
+        </section>
+
+        <section id="filtros" class="filters-section" aria-labelledby="filtros-title">
+            <h2 id="filtros-title" class="visually-hidden">Filtres de cerca</h2>
+            <div class="filters-container">
+                <div class="search-box">
+                    <label for="search-input" class="visually-hidden">Cercar museus per nom o descripció</label>
+                    <input type="search" id="search-input" placeholder="Cercar museus..." autocomplete="off" aria-describedby="search-hint">
+                    <span id="search-hint" class="visually-hidden">Escriu per filtrar la llista de museus</span>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-island">Illa</label>
+                    <select id="filter-island" aria-label="Filtrar per illa">
+                        <option value="">Totes les illes</option>
+                        <option value="Mallorca">Mallorca</option>
+                        <option value="Menorca">Menorca</option>
+                        <option value="Ibiza">Eivissa</option>
+                        <option value="Formentera">Formentera</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-style">Estil artístic</label>
+                    <select id="filter-style" aria-label="Filtrar per estil artístic">
+                        <option value="">Tots els estils</option>
+                        <option value="Arte Contemporáneo">Art contemporani</option>
+                        <option value="Historia y Arqueología">Història i arqueologia</option>
+                        <option value="Arqueología">Arqueologia</option>
+                        <option value="Arte Contemporáneo / Surrealismo">Surrealisme</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-free">Entrada gratuïta</label>
+                    <select id="filter-free" aria-label="Filtrar per entrada gratuïta">
+                        <option value="">Tots</option>
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section id="museus" class="museums-section" aria-labelledby="museus-title">
+            <h2 id="museus-title">Els nostres museus</h2>
+            <div id="museums-grid" class="museums-grid" role="list">
+                <!-- Generat dinàmicament per JS -->
+            </div>
+            <p id="no-results" class="no-results visually-hidden" role="status">Cap museu coincideix amb els criteris seleccionats.</p>
+        </section>
+
+        <section id="rutes" class="rutes-section" aria-labelledby="rutes-title">
+            <h2 id="rutes-title">Rutes culturals recomanades</h2>
+            <div id="rutes-list" class="rutes-grid">
+                <!-- Generat per JS -->
+            </div>
+        </section>
+
+        <section id="mapa" class="map-section" aria-labelledby="mapa-title">
+            <h2 id="mapa-title">Ubicació dels museus</h2>
+            <div class="map-container">
+                <div id="map-museus" class="map-leaflet" role="application" aria-label="Mapa interactiu amb ubicació dels museus" title="Mapa de museus de les Illes Balears"></div>
+            </div>
+        </section>
+
+        <section id="favoritos" class="favorites-section" aria-labelledby="favoritos-title">
+            <h2 id="favoritos-title">Els meus favorits</h2>
+            <div id="favorites-list" class="favorites-list" role="list">
+                <p id="favorites-empty" class="favorites-empty">Afegeix museus a favorits per veure'ls aquí.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+            <p>&copy; 2025 Museus Illes Balears. Pràctica final Tecnologia Multimèdia - UIB.</p>
+            <p>Dades estructurades segons <a href="https://schema.org/Museum" rel="noopener noreferrer" target="_blank">Schema.org</a>.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
