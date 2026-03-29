@@ -14,8 +14,7 @@ index.html
 ├── #museus (listado)
 ├── #mapa (mapa)
 ├── #favoritos (favoritos)
-├── museu.html?id=X (detalle)
-└── docs/guia.html (guía)
+└── museu.html?id=X (detalle)
 ```
 
 ## HTML5

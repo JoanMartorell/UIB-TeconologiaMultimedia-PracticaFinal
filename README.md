@@ -21,7 +21,6 @@
 │   └── detail.js      # Pàgina de detall, museus relacionats
 ├── data/museus.json   # Dades Schema.org (JSON-LD)
 ├── docs/
-│   ├── guia.html      # Guia d'ús
 │   └── ARQUITECTURA.md
 ├── media/
 │   ├── logo.svg

@@ -15,13 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page-home">
     <a href="#main" class="skip-link">Salta al contingut principal</a>
-
-    <div id="search-sticky" class="search-sticky" aria-hidden="true">
-        <label for="search-sticky-input" class="visually-hidden">Cercar museus</label>
-        <input type="search" id="search-sticky-input" placeholder="Cercar museus..." autocomplete="off">
-    </div>
 
     <div class="drawer-overlay" aria-hidden="true"></div>
 
@@ -48,68 +43,71 @@
                     <li><a href="index.html#rutes">Rutes</a></li>
                     <li><a href="index.html#mapa">Mapa</a></li>
                     <li><a href="index.html#favoritos">Favorits</a></li>
-                    <li><a href="docs/guia.html">Guia</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main id="main" class="main-content" role="main">
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero hero-fullscreen" aria-labelledby="hero-title">
+            <div class="hero-carousel" aria-hidden="true">
+                <div class="hero-slide is-active">
+                    <img src="media/images/inici/01.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="async">
+                </div>
+                <div class="hero-slide">
+                    <img src="media/images/inici/02.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+                </div>
+                <div class="hero-slide">
+                    <img src="media/images/inici/03.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+                </div>
+                <div class="hero-slide">
+                    <img src="media/images/inici/04.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+                </div>
+                <div class="hero-slide">
+                    <img src="media/images/inici/05.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+                </div>
+            </div>
+            <div class="hero-scrim" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1 id="hero-title">Museus d'Art i Disseny a les Illes Balears</h1>
                 <p class="hero-subtitle">Descobreix la riquesa cultural de Mallorca, Menorca, Eivissa i Formentera</p>
-                <div class="hero-actions">
-                    <a href="#museus" class="btn btn-primary">Explorar museus</a>
-                    <button type="button" class="btn btn-secondary" id="btn-geolocation" aria-label="Trobar museus propers">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                        Museus propers
-                    </button>
-                </div>
             </div>
-            <div class="hero-visual">
-                <img src="media/hero.svg" alt="Museus d'art i disseny de les Illes Balears" width="800" height="450" loading="eager" decoding="async">
-            </div>
-        </section>
-
-        <section id="filtros" class="filters-section" aria-labelledby="filtros-title">
-            <h2 id="filtros-title" class="visually-hidden">Filtres de cerca</h2>
-            <div class="filters-container">
-                <div class="search-box">
-                    <label for="search-input" class="visually-hidden">Cercar museus per nom o descripció</label>
-                    <input type="search" id="search-input" placeholder="Cercar museus..." autocomplete="off" aria-describedby="search-hint">
-                    <span id="search-hint" class="visually-hidden">Escriu per filtrar la llista de museus</span>
-                </div>
-                <div class="filter-group">
-                    <label for="filter-island">Illa</label>
-                    <select id="filter-island" aria-label="Filtrar per illa">
-                        <option value="">Totes les illes</option>
-                        <option value="Mallorca">Mallorca</option>
-                        <option value="Menorca">Menorca</option>
-                        <option value="Ibiza">Eivissa</option>
-                        <option value="Formentera">Formentera</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="filter-style">Estil artístic</label>
-                    <select id="filter-style" aria-label="Filtrar per estil artístic">
-                        <option value="">Tots els estils</option>
-                        <option value="Arte Contemporáneo">Art contemporani</option>
-                        <option value="Historia y Arqueología">Història i arqueologia</option>
-                        <option value="Arqueología">Arqueologia</option>
-                        <option value="Arte Contemporáneo / Surrealismo">Surrealisme</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="filter-free">Entrada gratuïta</label>
-                    <select id="filter-free" aria-label="Filtrar per entrada gratuïta">
-                        <option value="">Tots</option>
-                        <option value="true">Sí</option>
-                        <option value="false">No</option>
-                    </select>
+            <div class="hero-carousel-dots" role="tablist" aria-label="Imatges de la portada"></div>
+            <div id="filtros" class="filters-section hero-filters" aria-labelledby="filtros-title">
+                <h2 id="filtros-title" class="visually-hidden">Filtres de cerca</h2>
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="filter-island">Illa</label>
+                        <select id="filter-island" aria-label="Filtrar per illa">
+                            <option value="">Totes les illes</option>
+                            <option value="Mallorca">Mallorca</option>
+                            <option value="Menorca">Menorca</option>
+                            <option value="Ibiza">Eivissa</option>
+                            <option value="Formentera">Formentera</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-style">Estil artístic</label>
+                        <select id="filter-style" aria-label="Filtrar per estil artístic">
+                            <option value="">Tots els estils</option>
+                            <option value="Arte Contemporáneo">Art contemporani</option>
+                            <option value="Historia y Arqueología">Història i arqueologia</option>
+                            <option value="Arqueología">Arqueologia</option>
+                            <option value="Arte Contemporáneo / Surrealismo">Surrealisme</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-free">Entrada gratuïta</label>
+                        <select id="filter-free" aria-label="Filtrar per entrada gratuïta">
+                            <option value="">Tots</option>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="filter-search-action">
+                        <span class="filter-search-spacer" aria-hidden="true"></span>
+                        <a href="index.html#museus" class="btn btn-primary">Cercar</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -124,7 +122,7 @@
 
         <section id="rutes" class="rutes-section" aria-labelledby="rutes-title">
             <h2 id="rutes-title">Rutes culturals recomanades</h2>
-            <div id="rutes-list" class="rutes-grid">
+            <div id="rutes-list" class="rutes-grid" role="list">
                 <!-- Generat per JS -->
             </div>
         </section>

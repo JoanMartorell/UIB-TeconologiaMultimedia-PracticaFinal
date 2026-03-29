@@ -17,7 +17,10 @@
     }
 
     try {
-      const data = await Utils.fetchJSON('data/museus.json');
+      const [data, manifest] = await Promise.all([
+        Utils.fetchJSON('data/museus.json'),
+        Utils.fetchJSON('data/images/manifest.json').catch(() => ({}))
+      ]);
       allMuseums = data['@graph'] || [];
       const museum = allMuseums.find(m => m.identifier === id);
 
@@ -26,7 +29,8 @@
         return;
       }
 
-      renderMuseum(museum, allMuseums);
+      const imageManifest = manifest && typeof manifest === 'object' ? manifest : {};
+      renderMuseum(museum, allMuseums, imageManifest);
       setupDrawerMenu();
     } catch (err) {
       renderError('Error en carregar les dades.');
@@ -84,7 +88,7 @@
     });
   }
 
-  function renderMuseum(m, all) {
+  function renderMuseum(m, all, imageManifest) {
     const artStyle = Utils.getProperty(m, 'artStyle');
     const foundingDate = Utils.getProperty(m, 'foundingDate');
     const address = m.address;
@@ -92,12 +96,26 @@
     const isFav = Utils.storage.isFavorite(m.identifier);
     const sameAs = (m.sameAs || []).filter(Boolean);
     const related = getRelatedMuseums(m, all);
+    const galleryFiles = Utils.getMuseumGalleryFiles(m.identifier, imageManifest);
+    const galleryHtml = galleryFiles.length
+      ? `
+        <div class="museu-gallery" aria-label="Galeria d'imatges del museu">
+          ${galleryFiles.map((file, i) => {
+            const src = Utils.museumDataImageUrl(m.identifier, file);
+            const alt = `${m.name || 'Museu'} — imatge ${i + 1}`;
+            const eager = i === 0 ? ' fetchpriority="high"' : '';
+            return `<img src="${src}" alt="${escapeHtml(alt)}" width="1200" height="800" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async"${eager} itemprop="image">`;
+          }).join('')}
+        </div>
+      `
+      : '';
 
     const html = `
       <header class="museu-header">
         <h1 itemprop="name">${escapeHtml(m.name)}</h1>
         ${m.alternateName ? `<p class="alternate-name">${escapeHtml(m.alternateName)}</p>` : ''}
       </header>
+      ${galleryHtml}
       <div class="museu-body">
         <div class="museu-description-block">
           <p id="museu-description-text" itemprop="description">${escapeHtml(m.description)}</p>

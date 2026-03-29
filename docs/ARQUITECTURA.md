@@ -31,7 +31,7 @@
 | `css/` | Estilos (styles.css). Variables CSS, diseño responsive, animaciones. |
 | `js/` | Scripts: main.js (lógica principal), utils.js (helpers, storage), detail.js (página detalle). |
 | `data/` | JSON con museos. Schema.org @graph. |
-| `docs/` | Documentación técnica (guia.html, ARQUITECTURA.md). |
+| `docs/` | Documentación técnica (ARQUITECTURA.md). |
 | `media/` | Imágenes: logo.svg, hero.svg. |
 
 ## Gestión de datos (JSON)
@@ -79,7 +79,6 @@
 
 - `index.html` - Listado principal
 - `museu.html?id=M001` - Detalle del museo M001
-- `docs/guia.html` - Guía de uso
 
 ## Configuración
 

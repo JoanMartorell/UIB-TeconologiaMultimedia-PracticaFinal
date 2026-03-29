@@ -85,5 +85,18 @@ const Utils = {
   /** Obtiene parámetros de la URL */
   getUrlParams() {
     return new URLSearchParams(window.location.search);
+  },
+
+  /** URL d'una imatge local del museu (carpeta data/images/{identifier}/) */
+  museumDataImageUrl(identifier, filename) {
+    if (!identifier || !filename) return '';
+    return `data/images/${identifier}/${filename}`;
+  },
+
+  /** Llista de fitxers d'imatge per id de museu (manifest o 01.jpg per defecte) */
+  getMuseumGalleryFiles(identifier, manifest) {
+    const files = manifest?.[identifier];
+    if (Array.isArray(files) && files.length) return files;
+    return ['01.jpg'];
   }
 };

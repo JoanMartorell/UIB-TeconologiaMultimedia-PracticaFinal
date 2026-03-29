@@ -1,0 +1,25 @@
+{
+  "rutes": [
+    {
+      "nom": "Art contemporani a Palma",
+      "illa": "Mallorca",
+      "descripcio": "Es Baluard i Fundació Miró: una jornada d'art modern i contemporani al centre de Palma.",
+      "durada": "1 dia",
+      "museuIds": ["M001", "M004"]
+    },
+    {
+      "nom": "Patrimoni arqueològic a Eivissa",
+      "illa": "Eivissa",
+      "descripcio": "MACE i MAEF: art i arqueologia a Dalt Vila.",
+      "durada": "Migdia",
+      "museuIds": ["M003", "M005"]
+    },
+    {
+      "nom": "Història de Menorca",
+      "illa": "Menorca",
+      "descripcio": "Museu de Menorca: del món talayòtic a la contemporaneïtat a Maó.",
+      "durada": "Mig dia",
+      "museuIds": ["M002"]
+    }
+  ]
+}

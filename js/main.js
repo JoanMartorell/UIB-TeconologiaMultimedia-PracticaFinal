@@ -8,9 +8,84 @@
 
   let museumsData = [];
   let museumsLeafletMap = null;
+  let museumImagesManifest = {};
+
+  /** Carrusel del hero (pàgina d'inici): rotació automàtica i punts navegables */
+  function initHeroCarousel() {
+    const root = document.querySelector('.hero-carousel');
+    if (!root) return;
+    const slides = root.querySelectorAll('.hero-slide');
+    if (slides.length <= 1) return;
+
+    let dotsRoot = document.querySelector('.hero-carousel-dots');
+    if (!dotsRoot) {
+      dotsRoot = document.createElement('div');
+      dotsRoot.className = 'hero-carousel-dots';
+      dotsRoot.setAttribute('role', 'tablist');
+      dotsRoot.setAttribute('aria-label', 'Imatges de la portada');
+      const hero = root.closest('.hero-fullscreen') || root.parentElement;
+      const filters = hero?.querySelector('.hero-filters');
+      if (hero && filters) hero.insertBefore(dotsRoot, filters);
+      else root.insertAdjacentElement('afterend', dotsRoot);
+    }
+
+    const duration = 5500;
+    let active = 0;
+    let intervalId = null;
+
+    dotsRoot.innerHTML = '';
+    const dotBtns = [];
+
+    function setSlide(index) {
+      const n = slides.length;
+      const next = ((index % n) + n) % n;
+      slides[active].classList.remove('is-active');
+      dotBtns[active]?.classList.remove('is-active');
+      dotBtns[active]?.setAttribute('aria-selected', 'false');
+      dotBtns[active]?.setAttribute('tabindex', '-1');
+      active = next;
+      slides[active].classList.add('is-active');
+      dotBtns[active]?.classList.add('is-active');
+      dotBtns[active]?.setAttribute('aria-selected', 'true');
+      dotBtns[active]?.setAttribute('tabindex', '0');
+    }
+
+    slides.forEach((_, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'hero-carousel-dot' + (idx === 0 ? ' is-active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+      btn.setAttribute('tabindex', idx === 0 ? '0' : '-1');
+      btn.setAttribute('aria-label', `Imatge ${idx + 1} de ${slides.length}`);
+      btn.addEventListener('click', () => {
+        setSlide(idx);
+        restartAuto();
+      });
+      dotsRoot.appendChild(btn);
+      dotBtns.push(btn);
+    });
+
+    function restartAuto() {
+      if (slides.length <= 1) return;
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => setSlide(active + 1), duration);
+    }
+
+    restartAuto();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = null;
+      } else {
+        restartAuto();
+      }
+    });
+  }
 
   /** Inicialització */
   async function init() {
+    initHeroCarousel();
     if (!document.getElementById('museums-grid')) return;
     showLoading();
     try {
@@ -24,10 +99,15 @@
     setupFilters();
     setupDrawerMenu();
     setupFavorites();
-    setupGeolocation();
     setupWeather();
-    setupRutes();
-    setupPersistentSearch();
+    let rutesJson = [];
+    try {
+      const raw = await Utils.fetchJSON('data/rutes.json');
+      rutesJson = Array.isArray(raw.rutes) ? raw.rutes : [];
+    } catch (err) {
+      console.error('Error carregant rutes:', err);
+    }
+    renderRutes(rutesJson);
     injectJSONLD();
   }
 
@@ -54,8 +134,12 @@
   /** Carrega museus des de JSON */
   async function loadMuseums() {
     try {
-      const data = await Utils.fetchJSON('data/museus.json');
+      const [data, manifest] = await Promise.all([
+        Utils.fetchJSON('data/museus.json'),
+        Utils.fetchJSON('data/images/manifest.json').catch(() => ({}))
+      ]);
       museumsData = data['@graph'] || [];
+      museumImagesManifest = manifest && typeof manifest === 'object' ? manifest : {};
     } catch (err) {
       console.error('Error carregant museus:', err);
       const grid = document.getElementById('museums-grid');
@@ -85,7 +169,7 @@
         <div class="empty-state">
           <span class="empty-state-icon" aria-hidden="true">🔍</span>
           <p class="empty-state-title">Cap museu coincideix amb els criteris</p>
-          <p class="empty-state-desc">Prova a canviar els filtres o la cerca. Per exemple, selecciona una altra illa o un estil artístic diferent.</p>
+          <p class="empty-state-desc">Prova a canviar els filtres. Per exemple, selecciona una altra illa o un estil artístic diferent.</p>
           <button type="button" class="btn btn-secondary" id="btn-clear-filters">Netejar filtres</button>
         </div>
       `;
@@ -103,11 +187,10 @@
   }
 
   function clearFilters() {
-    const search = document.getElementById('search-input');
     const island = document.getElementById('filter-island');
     const style = document.getElementById('filter-style');
     const free = document.getElementById('filter-free');
-    [search, island, style, free].forEach(el => { if (el) el.value = ''; });
+    [island, style, free].forEach(el => { if (el) el.value = ''; });
     renderMuseums(museumsData);
   }
 
@@ -122,10 +205,15 @@
     const isFav = Utils.storage.isFavorite(id);
     const detailUrl = `museu.html?id=${id}`;
     const sameAs = (m.sameAs || []).filter(Boolean);
+    const galleryFiles = Utils.getMuseumGalleryFiles(id, museumImagesManifest);
+    const coverSrc = Utils.museumDataImageUrl(id, galleryFiles[0]);
+    const coverAlt = name ? `Imatge: ${name}` : '';
 
     return `
       <article class="museum-card" role="listitem" itemscope itemtype="https://schema.org/Museum">
-        <div class="museum-card-image" aria-hidden="true">🏛️</div>
+        <div class="museum-card-image">
+          <img src="${coverSrc}" alt="${escapeHtml(coverAlt)}" width="640" height="400" loading="lazy" decoding="async" itemprop="image" onerror="this.style.display='none'">
+        </div>
         <div class="museum-card-body">
           <h3>
             <a href="${detailUrl}" itemprop="name">${escapeHtml(name)}</a>
@@ -203,26 +291,20 @@
 
   /** Filtros */
   function setupFilters() {
-    const search = document.getElementById('search-input');
     const island = document.getElementById('filter-island');
     const style = document.getElementById('filter-style');
     const free = document.getElementById('filter-free');
 
     const applyFilters = () => {
-      const q = (search?.value || '').toLowerCase();
       const islandVal = island?.value || '';
       const styleVal = style?.value || '';
       const freeVal = free?.value || '';
 
       const filtered = museumsData.filter(m => {
-        const name = (m.name || '').toLowerCase();
-        const desc = (m.description || '').toLowerCase();
         const artStyle = Utils.getProperty(m, 'artStyle') || '';
         const mIsland = Utils.getIsland(m);
         const isFree = m.isAccessibleForFree === true;
         const hasFormentera = (m.name || '').toLowerCase().includes('formentera') || (m.description || '').toLowerCase().includes('formentera');
-
-        if (q && !name.includes(q) && !desc.includes(q)) return false;
         if (islandVal === 'Formentera' && !hasFormentera) return false;
         if (islandVal && islandVal !== 'Formentera' && mIsland !== islandVal) return false;
         if (styleVal && !artStyle.includes(styleVal)) return false;
@@ -235,7 +317,7 @@
       renderMuseums(filtered);
     };
 
-    [search, island, style, free].forEach(el => {
+    [island, style, free].forEach(el => {
       if (el) el.addEventListener('input', applyFilters);
       if (el && el.tagName === 'SELECT') el.addEventListener('change', applyFilters);
     });
@@ -315,46 +397,6 @@
     });
   }
 
-  /** Geolocalització (Geolocation API) */
-  function setupGeolocation() {
-    const btn = document.getElementById('btn-geolocation');
-    if (!btn || !navigator.geolocation) return;
-
-    btn.addEventListener('click', () => {
-      btn.disabled = true;
-      btn.innerHTML = '<span class="btn-spinner"></span> Obtenint ubicació…';
-
-      navigator.geolocation.getCurrentPosition(
-        pos => {
-          const { latitude, longitude } = pos.coords;
-          const sorted = [...museumsData].sort((a, b) => {
-            const distA = distance(latitude, longitude, a.geo?.latitude, a.geo?.longitude);
-            const distB = distance(latitude, longitude, b.geo?.latitude, b.geo?.longitude);
-            return distA - distB;
-          });
-          renderMuseums(sorted);
-          Utils.showToast('Ordenat per proximitat', 'success');
-          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Museus propers';
-          btn.disabled = false;
-        },
-        () => {
-          btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Museus propers';
-          btn.disabled = false;
-          Utils.showToast('No s\'ha pogut obtenir la ubicació. Comprova els permisos.', 'error');
-        }
-      );
-    });
-  }
-
-  function distance(lat1, lon1, lat2, lon2) {
-    if (!lat2 || !lon2) return Infinity;
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  }
-
   /** API Meteorologia (Open-Meteo) */
   async function setupWeather() {
     const container = document.getElementById('weather-widget');
@@ -382,52 +424,62 @@
     return map[code] || 'Meteorologia';
   }
 
-  /** Rutes culturals */
-  function setupRutes() {
-    const container = document.getElementById('rutes-list');
-    if (!container || !museumsData.length) return;
-
-    const rutes = [
-      { nom: 'Art contemporani a Palma', illes: ['Mallorca'], desc: 'Es Baluard i Fundació Miró en un dia', ids: ['M001', 'M004'] },
-      { nom: 'Patrimoni arqueològic a Eivissa', illes: ['Ibiza'], desc: 'MACE i MAEF: art i arqueologia a Dalt Vila', ids: ['M003', 'M005'] },
-      { nom: 'Història de Menorca', illes: ['Menorca'], desc: 'Museu de Menorca i cultura talayòtica', ids: ['M002'] }
-    ];
-
-    container.innerHTML = rutes.map(r => `
-      <div class="ruta-card">
-        <h3>${escapeHtml(r.nom)}</h3>
-        <p>${escapeHtml(r.desc)}</p>
-        <div class="ruta-museus">
-          ${r.ids.map(id => {
-            const m = museumsData.find(x => x.identifier === id);
-            return m ? `<a href="museu.html?id=${id}">${escapeHtml(m.name)}</a>` : '';
-          }).filter(Boolean).join(' → ')}
-        </div>
-      </div>
-    `).join('');
+  /** Etiqueta visible per a un museu (dades carregades o id) */
+  function rutaMuseumLabel(id) {
+    const m = museumsData.find(x => x.identifier === id);
+    if (!m) return id;
+    return m.alternateName || m.name || id;
   }
 
-  /** Cercador persistent */
-  function setupPersistentSearch() {
-    const searchSticky = document.getElementById('search-sticky');
-    const searchInput = document.getElementById('search-input');
-    const searchStickyInput = document.getElementById('search-sticky-input');
-    if (!searchSticky || !searchInput || !searchStickyInput) return;
+  /** Rutes culturals (dades des de data/rutes.json) */
+  function renderRutes(rutes) {
+    const container = document.getElementById('rutes-list');
+    if (!container) return;
 
-    const obs = new IntersectionObserver(([e]) => {
-      searchSticky.classList.toggle('visible', !e.isIntersecting);
-    }, { threshold: 0 });
+    if (!rutes.length) {
+      container.innerHTML = `
+        <p class="rutes-empty" role="status">No hi ha rutes disponibles en aquest moment.</p>
+      `;
+      return;
+    }
 
-    const filtersSection = document.getElementById('filtros');
-    if (filtersSection) obs.observe(filtersSection);
+    function illaSlug(illa) {
+      const s = (illa || '').toLowerCase();
+      if (s.includes('eivissa') || s.includes('ibiza')) return 'eivissa';
+      if (s.includes('menorca')) return 'menorca';
+      if (s.includes('mallorca')) return 'mallorca';
+      if (s.includes('formentera')) return 'formentera';
+      return 'balears';
+    }
 
-    searchStickyInput.addEventListener('input', (e) => {
-      searchInput.value = e.target.value;
-      searchInput.dispatchEvent(new Event('input'));
-    });
-    searchInput.addEventListener('input', (e) => {
-      searchStickyInput.value = e.target.value;
-    });
+    container.innerHTML = rutes.map(r => {
+      const ids = Array.isArray(r.museuIds) ? r.museuIds : [];
+      const parades = ids.map((id, i) => {
+        const sep = i > 0
+          ? '<span class="ruta-parada-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
+          : '';
+        const label = rutaMuseumLabel(id);
+        return `${sep}<a class="ruta-parada" href="museu.html?id=${encodeURIComponent(id)}"><span class="ruta-parada-ord" aria-hidden="true">${i + 1}</span><span class="ruta-parada-text">${escapeHtml(label)}</span></a>`;
+      }).join('');
+
+      const illa = r.illa || '';
+      const durada = r.durada || '';
+      const slug = illaSlug(illa);
+
+      return `
+      <article class="ruta-card" data-illa="${escapeHtml(slug)}" role="listitem">
+        <div class="ruta-card-top">
+          <span class="ruta-badge">${escapeHtml(illa)}</span>
+          ${durada ? `<span class="ruta-duration"><svg class="ruta-duration-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="visually-hidden">Durada aproximada: </span>${escapeHtml(durada)}</span>` : ''}
+        </div>
+        <h3 class="ruta-title">${escapeHtml(r.nom || '')}</h3>
+        <p class="ruta-desc">${escapeHtml(r.descripcio || r.desc || '')}</p>
+        <div class="ruta-parades-wrap">
+          <span class="ruta-parades-label">Parades</span>
+          <div class="ruta-parades">${parades}</div>
+        </div>
+      </article>`;
+    }).join('');
   }
 
   /** JSON-LD per SEO */
