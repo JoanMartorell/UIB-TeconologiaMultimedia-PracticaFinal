@@ -974,6 +974,9 @@ body.drawer-open .map-leaflet {
 .museum-card-links {
   margin: 0.5rem 0;
   font-size: 0.8125rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
 }
 
 .link-external::after {
@@ -1142,10 +1145,19 @@ body.drawer-open .map-leaflet {
   color: white;
 }
 
-.museu-article .museu-header h1 {
+.museu-article .museu-header h1,
+.museu-article .museu-header h2 {
   margin: 0 0 0.5rem;
   font-family: var(--font-display);
   font-size: 1.75rem;
+}
+
+.museu-article .museu-header .museu-header-alt {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.92;
+  line-height: 1.35;
 }
 
 .museu-gallery {
@@ -1192,6 +1204,15 @@ body.drawer-open .map-leaflet {
   min-width: 120px;
 }
 
+.museu-article .info-item .info-muted {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.museu-article .info-item a {
+  color: var(--color-primary);
+}
+
 .museu-article .museu-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1210,13 +1231,16 @@ body.drawer-open .map-leaflet {
 }
 
 .museu-article .museu-external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--color-border);
 }
 
 .museu-article .museu-external-links a {
-  margin-right: 1rem;
+  margin-right: 0;
 }
 
 .museu-article .museu-related {
@@ -1341,17 +1365,23 @@ body.drawer-open .map-leaflet {
    Estils del Pop-up (Dialog) - Modal de Museu
    ============================================ */
 
+/* No posar display:flex al dialog tancat: sobreescriu el display:none del UA i el panell queda visible sense backdrop */
 .museu-modal {
   border: none;
   border-radius: var(--radius-lg);
   padding: 0;
   width: 95%;
   max-width: 800px;
-  max-height: 90vh; /* Evita que el modal sea más grande que la pantalla */
+  max-height: 90vh;
   background-color: var(--color-bg-card);
   box-shadow: var(--shadow-lg);
   color: var(--color-text);
-  overflow: hidden; /* Mantiene los bordes redondeados limpios */
+  overflow: hidden;
+}
+
+.museu-modal[open] {
+  display: flex;
+  flex-direction: column;
 }
 
 /* El fondo oscuro detrás del pop-up */
@@ -1365,7 +1395,45 @@ body.drawer-open .map-leaflet {
   position: relative;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
   max-height: 90vh;
+  width: 100%;
+}
+
+/* El diàleg limita alçària; l'article omple i el cos fa scroll */
+.museu-modal .modal-content > .museu-article {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.museu-modal .museu-article .museu-header {
+  flex-shrink: 0;
+}
+
+.museu-modal .museu-article .museu-body.modal-body-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Menys buit entre capçalera i primera fila (Illa:, etc.) només al modal */
+.museu-modal .museu-article .museu-body {
+  padding: 0.75rem 1.5rem 1.5rem;
+}
+
+.museu-modal .museu-article .info-grid {
+  margin: 0 0 1rem;
+}
+
+.museu-modal .museu-article .museu-external-links {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
 }
 
 /* Contenedor con scroll para que el contenido largo no rompa la pantalla */

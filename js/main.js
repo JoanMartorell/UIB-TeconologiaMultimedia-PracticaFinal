@@ -165,6 +165,19 @@
     const closeBtn = document.getElementById('close-modal');
     if (!modal) return;
 
+    // Neteja sempre que el dialog es tanqui (Escape, close(), backdrop, botó X)
+    modal.addEventListener('close', () => {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      document.body.style.overflow = '';
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        try {
+          lastFocusedElement.focus();
+        } catch {
+          /* node desconnectat */
+        }
+      }
+    });
+
     // Abrir modal usando delegación de eventos
     document.body.addEventListener('click', (e) => {
       const trigger = e.target.closest('[data-open-modal]');
@@ -176,16 +189,36 @@
       }
     });
 
-    closeBtn.addEventListener('click', closeModal);
+    closeBtn?.addEventListener('click', closeModal);
 
-    // Cerrar si se hace clic fuera
-    modal.addEventListener('click', (e) => {
-      const rect = modal.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) closeModal();
+    // Clic al fons (backdrop): el target és el <dialog>, no el contingut
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  /** Web Speech API: llegeix el text pla de la descripció (mateix patró que detail.js) */
+  function setupModalSpeech(descriptionPlain) {
+    const btn = document.getElementById('btn-tts-museu');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const clean = (descriptionPlain || '').replace(/\s+/g, ' ').trim();
+      if (!clean) return;
+
+      if (!window.speechSynthesis) {
+        Utils.showToast(
+          'La lectura en veu alta no està disponible (cal HTTPS o un navegador compatible).',
+          'error'
+        );
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
     });
   }
 
@@ -195,36 +228,109 @@
 
     const modal = document.getElementById('museu-modal');
     const modalBody = document.getElementById('modal-body');
-    
-    const name = escapeHtml(m.name || m.alternateName);
+
+    const displayName = m.name || m.alternateName;
+    const name = escapeHtml(displayName);
     const desc = escapeHtml(m.description || 'No hi ha descripció disponible.');
     const artStyle = escapeHtml(Utils.getProperty(m, 'artStyle') || 'No especificat');
     const island = escapeHtml(Utils.getIsland(m));
-    const isFree = m.isAccessibleForFree ? 'Gratuïta' : 'De pagament';
+    const isFree = escapeHtml(m.isAccessibleForFree ? 'Gratuïta' : 'De pagament');
     const isFav = Utils.storage.isFavorite(id);
-    
+
+    const addr = m.address || {};
+    const addressLine = [addr.streetAddress, addr.addressLocality, addr.addressRegion].filter(Boolean).join(', ');
+    const founding = Utils.getProperty(m, 'foundingDate');
+    const ratingVal = m.aggregateRating?.ratingValue;
+    const reviewCount = m.aggregateRating?.reviewCount;
+    const tel = m.telephone || '';
+    const telHref = tel ? `tel:${tel.replace(/\s/g, '')}` : '';
+    const hours = escapeHtml(Utils.formatOpeningHours(m.openingHours));
+    const sameAs = (m.sameAs || []).filter(Boolean);
+
+    const headerAlt = m.alternateName && m.name && m.alternateName !== m.name
+      ? `<p class="museu-header-alt">${escapeHtml(m.alternateName)}</p>`
+      : '';
+
+    const infoItem = (label, inner) =>
+      `<div class="info-item"><strong>${label}</strong> <span>${inner}</span></div>`;
+
+    let infoGrid = '';
+    infoGrid += infoItem('Illa:', island);
+    infoGrid += infoItem('Estil artístic:', artStyle);
+    if (founding) infoGrid += infoItem('Any de fundació:', escapeHtml(String(founding)));
+    infoGrid += infoItem('Entrada:', isFree);
+    if (ratingVal != null && ratingVal !== '') {
+      const r = escapeHtml(String(ratingVal));
+      const rev = reviewCount ? ` <span class="info-muted">(${escapeHtml(String(reviewCount))} opinions)</span>` : '';
+      infoGrid += infoItem('Valoració:', `★ ${r}${rev}`);
+    }
+    if (addressLine) infoGrid += infoItem('Adreça:', escapeHtml(addressLine));
+    if (tel) {
+      infoGrid += infoItem(
+        'Telèfon:',
+        `<a href="${escapeHtml(telHref)}">${escapeHtml(tel)}</a>`
+      );
+    }
+    infoGrid += infoItem('Horari:', hours);
+
+    const extLinks = [];
+    if (m.url) {
+      extLinks.push(
+        `<a href="${escapeHtml(m.url)}" target="_blank" rel="noopener noreferrer" class="link-external">Web oficial</a>`
+      );
+    }
+    if (m.hasMap) {
+      extLinks.push(
+        `<a href="${escapeHtml(m.hasMap)}" target="_blank" rel="noopener noreferrer" class="link-external">Com arribar-hi (mapa)</a>`
+      );
+    }
+    sameAs.forEach(url => {
+      extLinks.push(
+        `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="link-external">${escapeHtml(sameAsLinkLabel(url))}</a>`
+      );
+    });
+    if (m.video_url) {
+      extLinks.push(
+        `<a href="${escapeHtml(m.video_url)}" target="_blank" rel="noopener noreferrer" class="link-external">Vídeo</a>`
+      );
+    }
+
+    const linksBlock = extLinks.length
+      ? `<nav class="museu-external-links" aria-label="Enllaços útils">${extLinks.join('')}</nav>`
+      : '';
+
+    const descPlain = (m.description || '').trim();
+    const ttsButton = descPlain
+      ? `
+          <button type="button" id="btn-tts-museu" class="btn-tts btn-tts-museu" aria-describedby="museu-description-text" aria-label="Llegir la descripció del museu en veu alta">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+            Llegir descripció en veu alta
+          </button>
+        `
+      : '';
+
     const galleryFiles = Utils.getMuseumGalleryFiles(id, museumImagesManifest);
     const coverSrc = Utils.museumDataImageUrl(id, galleryFiles[0]);
 
     modalBody.innerHTML = `
       <div class="museu-header" style="background: linear-gradient(rgba(26, 58, 74, 0.8), rgba(26, 58, 74, 0.9)), url('${coverSrc}') center/cover;">
         <h2 id="modal-title">${name}</h2>
+        ${headerAlt}
       </div>
       <div class="museu-body modal-body-scroll">
         <div class="info-grid">
-          <div class="info-item">
-            <strong>Illa:</strong> <span>${island}</span>
-          </div>
-          <div class="info-item">
-            <strong>Estil artístic:</strong> <span>${artStyle}</span>
-          </div>
-          <div class="info-item">
-            <strong>Entrada:</strong> <span>${isFree}</span>
-          </div>
+          ${infoGrid}
         </div>
+        ${linksBlock}
         <div class="museu-description-block">
           <h3>Sobre el museu</h3>
-          <p>${desc}</p>
+          <p id="museu-description-text">${desc}</p>
+          ${ttsButton}
         </div>
         <div class="museu-actions">
           <button type="button" class="btn btn-secondary btn-favorite ${isFav ? 'favorited' : ''}" 
@@ -238,15 +344,14 @@
       </div>
     `;
 
+    setupModalSpeech(m.description || '');
     modal.showModal();
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
     const modal = document.getElementById('museu-modal');
-    modal.close();
-    document.body.style.overflow = ''; 
-    if (lastFocusedElement) lastFocusedElement.focus();
+    if (modal?.open) modal.close();
   }
 
   window.toggleModalFav = function(btn, id) {
@@ -348,10 +453,22 @@
     renderMuseums(museumsData);
   }
 
+  function sameAsLinkLabel(url) {
+    try {
+      const h = new URL(url).hostname.replace(/^www\./, '');
+      if (h.includes('wikipedia')) return 'Wikipedia';
+      if (h.includes('wikidata')) return 'Wikidata';
+      return 'Enllaç extern';
+    } catch {
+      return 'Enllaç';
+    }
+  }
+
   function createMuseumCard(m) {
     const id = m.identifier;
     const name = m.name || m.alternateName;
-    const desc = (m.description || '').substring(0, 120) + '…';
+    const rawDesc = m.description || '';
+    const desc = rawDesc.length > 120 ? `${rawDesc.substring(0, 120)}…` : rawDesc;
     const artStyle = Utils.getProperty(m, 'artStyle');
     const island = Utils.getIsland(m);
     const rating = m.aggregateRating?.ratingValue || '-';
@@ -377,11 +494,11 @@
           <p itemprop="description">${escapeHtml(desc)}</p>
           ${sameAs.length ? `
             <div class="museum-card-links">
-              ${sameAs.map(url => `<a href="${url}" target="_blank" rel="noopener noreferrer" class="link-external">Wikipedia</a>`).join('')}
+              ${sameAs.map(url => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="link-external">${escapeHtml(sameAsLinkLabel(url))}</a>`).join('')}
             </div>
           ` : ''}
           <div class="museum-card-actions">
-            <span class="rating" aria-label="Valoració: ${rating} de 5">★ ${rating}</span>
+            <span class="rating" aria-label="Valoració: ${escapeHtml(String(rating))} de 5">★ ${escapeHtml(String(rating))}</span>
             <button type="button" class="btn-favorite ${isFav ? 'favorited' : ''}" 
               data-favorite="${id}" 
               aria-label="${isFav ? 'Treure de favorits' : 'Afegir a favorits'}">
