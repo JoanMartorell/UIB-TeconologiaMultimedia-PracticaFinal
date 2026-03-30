@@ -1336,3 +1336,68 @@ body.drawer-open .map-leaflet {
 .museum-card:nth-child(3) { animation-delay: 0.15s; }
 .museum-card:nth-child(4) { animation-delay: 0.2s; }
 .museum-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ============================================
+   Estils del Pop-up (Dialog) - Modal de Museu
+   ============================================ */
+
+.museu-modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  width: 95%;
+  max-width: 800px;
+  max-height: 90vh; /* Evita que el modal sea más grande que la pantalla */
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text);
+  overflow: hidden; /* Mantiene los bordes redondeados limpios */
+}
+
+/* El fondo oscuro detrás del pop-up */
+.museu-modal::backdrop {
+  background: rgba(26, 58, 74, 0.85); /* Tu --color-primary con transparencia */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+/* Contenedor con scroll para que el contenido largo no rompa la pantalla */
+.modal-body-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain; /* Evita que el scroll del modal mueva la página de fondo */
+}
+
+/* Botón flotante para cerrar el modal */
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-bg-card);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+  z-index: 10;
+}
+
+.btn-close:hover,
+.btn-close:focus-visible {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.1);
+  outline: none;
+}

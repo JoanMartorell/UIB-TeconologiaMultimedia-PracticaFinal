@@ -9,6 +9,7 @@
   let museumsData = [];
   let museumsLeafletMap = null;
   let museumImagesManifest = {};
+  let lastFocusedElement = null; // Guardará el botón que abre el modal para accesibilidad
 
   /** Carrusel del hero (pàgina d'inici): rotació automàtica i punts navegables */
   function initHeroCarousel() {
@@ -86,6 +87,9 @@
   /** Inicialització */
   async function init() {
     initHeroCarousel();
+    setupModal();      // Inicializamos lógica del Modal
+    setupScrollSpy();  // Inicializamos lógica del ScrollSpy
+    
     if (!document.getElementById('museums-grid')) return;
     showLoading();
     try {
@@ -111,7 +115,159 @@
     injectJSONLD();
   }
 
-  /** Mostra estat de càrrega */
+  /** ==========================================
+   * LÓGICA DE SCROLLSPY (Actualiza el menú al bajar)
+   * ========================================== */
+  function setupScrollSpy() {
+    const navLinks = document.querySelectorAll('#main-nav a');
+    const sections = [
+      { id: 'inici', el: document.querySelector('.hero-fullscreen') },
+      { id: 'museus', el: document.getElementById('museus') },
+      { id: 'rutes', el: document.getElementById('rutes') },
+      { id: 'mapa', el: document.getElementById('mapa') },
+      { id: 'favoritos', el: document.getElementById('favoritos') }
+    ];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -60% 0px', // Detecta cuando pasa por la mitad de la pantalla
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionObj = sections.find(s => s.el === entry.target);
+          if (sectionObj) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (sectionObj.id === 'inici') {
+              const linkInici = document.querySelector('#main-nav a[href="index.html"]');
+              if (linkInici) linkInici.classList.add('active');
+            } else {
+              const link = document.querySelector(`#main-nav a[href$="#${sectionObj.id}"]`);
+              if (link) link.classList.add('active');
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(s => {
+      if (s.el) observer.observe(s.el);
+    });
+  }
+
+  /** ==========================================
+   * LÓGICA DEL MODAL (POP-UP)
+   * ========================================== */
+  function setupModal() {
+    const modal = document.getElementById('museu-modal');
+    const closeBtn = document.getElementById('close-modal');
+    if (!modal) return;
+
+    // Abrir modal usando delegación de eventos
+    document.body.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-modal]');
+      if (trigger) {
+        e.preventDefault();
+        lastFocusedElement = trigger;
+        const id = trigger.getAttribute('data-open-modal');
+        openModal(id);
+      }
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Cerrar si se hace clic fuera
+    modal.addEventListener('click', (e) => {
+      const rect = modal.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) closeModal();
+    });
+  }
+
+  function openModal(id) {
+    const m = museumsData.find(x => x.identifier === id);
+    if (!m) return;
+
+    const modal = document.getElementById('museu-modal');
+    const modalBody = document.getElementById('modal-body');
+    
+    const name = escapeHtml(m.name || m.alternateName);
+    const desc = escapeHtml(m.description || 'No hi ha descripció disponible.');
+    const artStyle = escapeHtml(Utils.getProperty(m, 'artStyle') || 'No especificat');
+    const island = escapeHtml(Utils.getIsland(m));
+    const isFree = m.isAccessibleForFree ? 'Gratuïta' : 'De pagament';
+    const isFav = Utils.storage.isFavorite(id);
+    
+    const galleryFiles = Utils.getMuseumGalleryFiles(id, museumImagesManifest);
+    const coverSrc = Utils.museumDataImageUrl(id, galleryFiles[0]);
+
+    modalBody.innerHTML = `
+      <div class="museu-header" style="background: linear-gradient(rgba(26, 58, 74, 0.8), rgba(26, 58, 74, 0.9)), url('${coverSrc}') center/cover;">
+        <h2 id="modal-title">${name}</h2>
+      </div>
+      <div class="museu-body modal-body-scroll">
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Illa:</strong> <span>${island}</span>
+          </div>
+          <div class="info-item">
+            <strong>Estil artístic:</strong> <span>${artStyle}</span>
+          </div>
+          <div class="info-item">
+            <strong>Entrada:</strong> <span>${isFree}</span>
+          </div>
+        </div>
+        <div class="museu-description-block">
+          <h3>Sobre el museu</h3>
+          <p>${desc}</p>
+        </div>
+        <div class="museu-actions">
+          <button type="button" class="btn btn-secondary btn-favorite ${isFav ? 'favorited' : ''}" 
+                  data-favorite="${id}" onclick="window.toggleModalFav(this, '${id}')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            ${isFav ? 'Guardat' : 'Guardar a Favorits'}
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('museu-modal');
+    modal.close();
+    document.body.style.overflow = ''; 
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
+
+  window.toggleModalFav = function(btn, id) {
+    const isFav = Utils.storage.isFavorite(id);
+    Utils.storage.toggleFavorite(id);
+    const isNowFav = !isFav;
+    btn.classList.toggle('favorited', isNowFav);
+    btn.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="${isNowFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      ${isNowFav ? 'Guardat' : 'Guardar a Favorits'}
+    `;
+    renderMuseums(museumsData);
+    setupFavorites();
+  };
+
+  /** ==========================================
+   * RESTO DE FUNCIONES
+   * ========================================== */
+
   function showLoading() {
     const grid = document.getElementById('museums-grid');
     if (!grid) return;
@@ -131,7 +287,6 @@
     if (grid && grid.querySelector('.skeleton-card')) grid.innerHTML = '';
   }
 
-  /** Carrega museus des de JSON */
   async function loadMuseums() {
     try {
       const [data, manifest] = await Promise.all([
@@ -156,7 +311,6 @@
     }
   }
 
-  /** Renderitza les targetes de museus */
   function renderMuseums(museums) {
     const grid = document.getElementById('museums-grid');
     const noResults = document.getElementById('no-results');
@@ -194,7 +348,6 @@
     renderMuseums(museumsData);
   }
 
-  /** Crea HTML de targeta de museu */
   function createMuseumCard(m) {
     const id = m.identifier;
     const name = m.name || m.alternateName;
@@ -203,7 +356,6 @@
     const island = Utils.getIsland(m);
     const rating = m.aggregateRating?.ratingValue || '-';
     const isFav = Utils.storage.isFavorite(id);
-    const detailUrl = `museu.html?id=${id}`;
     const sameAs = (m.sameAs || []).filter(Boolean);
     const galleryFiles = Utils.getMuseumGalleryFiles(id, museumImagesManifest);
     const coverSrc = Utils.museumDataImageUrl(id, galleryFiles[0]);
@@ -216,7 +368,7 @@
         </div>
         <div class="museum-card-body">
           <h3>
-            <a href="${detailUrl}" itemprop="name">${escapeHtml(name)}</a>
+            <a href="#" data-open-modal="${id}" itemprop="name">${escapeHtml(name)}</a>
           </h3>
           <div class="museum-card-meta">
             ${artStyle ? `<span>${escapeHtml(artStyle)}</span>` : ''}
@@ -249,7 +401,6 @@
     return div.innerHTML;
   }
 
-  /** Mapa Leaflet amb marcadors des de les coordenades del JSON */
   function initMuseumsMap() {
     const el = document.getElementById('map-museus');
     if (!el || typeof L === 'undefined' || !museumsData.length) return;
@@ -274,7 +425,7 @@
       const marker = L.marker([lat, lon]).addTo(map);
       const name = escapeHtml(m.name || '');
       marker.bindPopup(
-        `<strong>${name}</strong><br><a href="museu.html?id=${m.identifier}">Veure fitxa</a>`
+        `<strong>${name}</strong><br><a href="#" data-open-modal="${m.identifier}">Veure detalls</a>`
       );
     });
 
@@ -289,7 +440,6 @@
     setTimeout(() => map.invalidateSize(), 100);
   }
 
-  /** Filtros */
   function setupFilters() {
     const island = document.getElementById('filter-island');
     const style = document.getElementById('filter-style');
@@ -323,7 +473,6 @@
     });
   }
 
-  /** Drawer menu mòbil */
   function setupDrawerMenu() {
     const toggle = document.querySelector('.nav-toggle');
     const nav = document.getElementById('main-nav');
@@ -352,7 +501,6 @@
     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
   }
 
-  /** Favorits */
   function handleFavoriteClick(e) {
     const btn = e.currentTarget;
     const id = btn.dataset.favorite;
@@ -363,7 +511,7 @@
     const svg = btn.querySelector('svg');
     if (svg) svg.setAttribute('fill', isFav ? 'currentColor' : 'none');
     renderFavorites(favs);
-    Utils.showToast(isFav ? 'Guardat a favorits' : 'Tret de favorits', 'success');
+    if(Utils.showToast) Utils.showToast(isFav ? 'Guardat a favorits' : 'Tret de favorits', 'success');
   }
 
   function setupFavorites() {
@@ -383,7 +531,7 @@
 
     list.innerHTML = favMuseums.map(m => `
       <div class="favorite-item" role="listitem">
-        <a href="museu.html?id=${m.identifier}">${escapeHtml(m.name)}</a>
+        <a href="#" data-open-modal="${m.identifier}">${escapeHtml(m.name)}</a>
         <button type="button" class="btn-favorite favorited" data-favorite="${m.identifier}" aria-label="Treure de favorits">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -397,7 +545,6 @@
     });
   }
 
-  /** API Meteorologia (Open-Meteo) */
   async function setupWeather() {
     const container = document.getElementById('weather-widget');
     if (!container) return;
@@ -424,14 +571,12 @@
     return map[code] || 'Meteorologia';
   }
 
-  /** Etiqueta visible per a un museu (dades carregades o id) */
   function rutaMuseumLabel(id) {
     const m = museumsData.find(x => x.identifier === id);
     if (!m) return id;
     return m.alternateName || m.name || id;
   }
 
-  /** Rutes culturals (dades des de data/rutes.json) */
   function renderRutes(rutes) {
     const container = document.getElementById('rutes-list');
     if (!container) return;
@@ -459,7 +604,7 @@
           ? '<span class="ruta-parada-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
           : '';
         const label = rutaMuseumLabel(id);
-        return `${sep}<a class="ruta-parada" href="museu.html?id=${encodeURIComponent(id)}"><span class="ruta-parada-ord" aria-hidden="true">${i + 1}</span><span class="ruta-parada-text">${escapeHtml(label)}</span></a>`;
+        return `${sep}<a class="ruta-parada" href="#" data-open-modal="${encodeURIComponent(id)}"><span class="ruta-parada-ord" aria-hidden="true">${i + 1}</span><span class="ruta-parada-text">${escapeHtml(label)}</span></a>`;
       }).join('');
 
       const illa = r.illa || '';
@@ -482,7 +627,6 @@
     }).join('');
   }
 
-  /** JSON-LD per SEO */
   function injectJSONLD() {
     if (!museumsData.length) return;
     const script = document.createElement('script');
