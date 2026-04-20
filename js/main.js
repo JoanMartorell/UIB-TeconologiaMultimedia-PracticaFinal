@@ -474,14 +474,26 @@
     const rating = m.aggregateRating?.ratingValue || '-';
     const isFav = Utils.storage.isFavorite(id);
     const sameAs = (m.sameAs || []).filter(Boolean);
-    const galleryFiles = Utils.getMuseumGalleryFiles(id, museumImagesManifest);
-    const coverSrc = Utils.museumDataImageUrl(id, galleryFiles[0]);
+    
+  // --- LÓGICA DE IMÁGENES LIMPIA (Solo lee del JSON) ---
+    // Dejamos la ruta vacía por defecto
+    let coverSrc = ''; 
+    let imageHtml = ''; // Variable para guardar la etiqueta <img>
+    
+    // Si existe el array 'image' en el JSON y tiene foto, creamos la etiqueta img
+    if (m.image && Array.isArray(m.image) && m.image.length > 0 && m.image[0] !== "") {
+        coverSrc = m.image[0]; 
+        imageHtml = `<img src="${coverSrc}" alt="${escapeHtml(name)}" width="640" height="400" loading="lazy" decoding="async" itemprop="image" onerror="this.style.display='none'">`;
+    }
+    // Si no hay foto, imageHtml se quedará vacío y se verá el fondo CSS
+    // -----------------------------------------------------
+
     const coverAlt = name ? `Imatge: ${name}` : '';
 
     return `
       <article class="museum-card" role="listitem" itemscope itemtype="https://schema.org/Museum">
         <div class="museum-card-image">
-          <img src="${coverSrc}" alt="${escapeHtml(coverAlt)}" width="640" height="400" loading="lazy" decoding="async" itemprop="image" onerror="this.style.display='none'">
+          ${imageHtml}
         </div>
         <div class="museum-card-body">
           <h3>

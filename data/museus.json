@@ -34,7 +34,7 @@
                 "ratingValue": "4.5",
                 "reviewCount": "3200"
             },
-            "image": [],
+            "image": ["media/images/inici/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -82,7 +82,7 @@
                 "ratingValue": "4.4",
                 "reviewCount": "850"
             },
-            "image": [],
+            "image": ["media/images/inici/02.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -130,7 +130,7 @@
                 "ratingValue": "4.3",
                 "reviewCount": "410"
             },
-            "image": [],
+            "image": ["media/images/inici/03.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -178,7 +178,7 @@
                 "ratingValue": "4.6",
                 "reviewCount": "4150"
             },
-            "image": [],
+            "image": ["media/images/inici/04.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -226,7 +226,7 @@
                 "ratingValue": "4.2",
                 "reviewCount": "380"
             },
-            "image": [],
+            "image": ["media/images/inici/05.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -238,6 +238,337 @@
                     "@type": "PropertyValue",
                     "name": "foundingDate",
                     "value": "1907"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.march.es/es/palma#museum",
+            "identifier": "M006",
+            "url": "https://www.march.es/es/palma",
+            "name": "Museu Fundación Juan March",
+            "alternateName": "Fundación Juan March Palma",
+            "description": "Ubicado en un edificio del siglo XVII, exhibe una magnífica colección permanente de arte español del siglo XX, incluyendo vanguardias, informalismo y arte pop.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Palma de Mallorca",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer de Sant Miquel, 11"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Palma"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.5714,
+                "longitude": 2.6515
+            },
+            "hasMap": "http://googleusercontent.com/maps.google.com/5",
+            "telephone": "+34 971 71 35 15",
+            "sameAs": [],
+            "openingHours": "Mo-Fr 10:00-18:30; Sa 10:30-14:00",
+            "isAccessibleForFree": true,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "1200"
+            },
+            "image": ["media/images/inici/06.jpg"],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo / Vanguardias"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1990"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://canprunera.com/#museum",
+            "identifier": "M007",
+            "url": "https://canprunera.com/",
+            "name": "Can Prunera Museu Modernista",
+            "alternateName": "Can Prunera",
+            "description": "Una obra maestra del Art Nouveau (modernismo) en Sóller. El edificio conserva su mobiliario original, vidrieras y detalles arquitectónicos, y alberga colecciones de arte.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Sóller",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer de sa Lluna, 86-90"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Sóller"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.7663,
+                "longitude": 2.7161
+            },
+            "hasMap": "http://googleusercontent.com/maps.google.com/6",
+            "telephone": "+34 971 63 89 73",
+            "sameAs": [],
+            "openingHours": "Tu-Su 10:30-18:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "reviewCount": "890"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Diseño / Modernismo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "2009"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.hauserwirth.com/locations/25040-menorca/#museum",
+            "identifier": "M008",
+            "url": "https://www.hauserwirth.com/locations/25040-menorca/",
+            "name": "Hauser & Wirth Menorca",
+            "alternateName": "Illa del Rei Art Center",
+            "description": "Centro de arte internacional situado en la Illa del Rei, en el puerto de Mahón. Combina exposiciones de arte contemporáneo de primer nivel con jardines diseñados por Piet Oudolf.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Mahón",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Illa del Rei, Puerto de Mahón"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Mahón"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8856,
+                "longitude": 4.2867
+            },
+            "hasMap": "http://googleusercontent.com/maps.google.com/7",
+            "telephone": null,
+            "sameAs": [],
+            "openingHours": "We-Su 10:00-17:00",
+            "isAccessibleForFree": true,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.7",
+                "reviewCount": "1500"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "2021"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.loac.es/#museum",
+            "identifier": "M009",
+            "url": "https://www.loac.es/",
+            "name": "LÔAC, Alaior Art Contemporani",
+            "alternateName": "LÔAC",
+            "description": "Alberga una de las colecciones privadas de arte contemporáneo más importantes de Baleares, con obras de Miquel Barceló, Joan Miró, Jaume Plensa y Marina Abramović.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Alaior",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer de des Banyer, 30"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Alaior"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.9317,
+                "longitude": 4.1408
+            },
+            "hasMap": "http://googleusercontent.com/maps.google.com/8",
+            "telephone": "+34 971 37 10 02",
+            "sameAs": [],
+            "openingHours": "Tu-Sa 10:00-13:30, 17:30-20:30",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "120"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "2021"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://eivissa.es/museopuget/#museum",
+            "identifier": "M010",
+            "url": "https://eivissa.es/",
+            "name": "Museo Puget",
+            "alternateName": "Museu Puget",
+            "description": "Situado en Dalt Vila, se centra en el costumbrismo, mostrando acuarelas y óleos que retratan el diseño, la vestimenta y la vida cotidiana tradicional ibicenca.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ibiza",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer Major, 18"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Ibiza"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.9065,
+                "longitude": 1.4358
+            },
+            "hasMap": "http://googleusercontent.com/maps.google.com/9",
+            "telephone": "+34 971 39 21 47",
+            "sameAs": [],
+            "openingHours": "Tu-Su 10:00-14:00",
+            "isAccessibleForFree": true,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.4",
+                "reviewCount": "340"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Costumbrismo / Etnografía"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "2007"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.formentera.es/explorar/cultura/coleccion-etnografica/#museum",
+            "identifier": "M011",
+            "url": "https://www.formentera.es/",
+            "name": "Colección Etnográfica de Formentera",
+            "alternateName": "Col·lecció Etnogràfica",
+            "description": "Ideal para conocer el diseño tradicional y etnográfico de la isla. Muestra el ingenio a través de muebles, herramientas e indumentaria de hace más de un siglo.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Sant Francesc Xavier",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Carrer de Jaume I, s/n"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Formentera"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.7056,
+                "longitude": 1.4283
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+de+Menorca0",
+            "telephone": "+34 971 32 10 87",
+            "sameAs": [],
+            "openingHours": "Tu-Sa 09:00-14:00",
+            "isAccessibleForFree": true,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.3",
+                "reviewCount": "180"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Etnografía / Diseño Tradicional"
+                }
+            ]
+        },
+        {
+            "@type": ["Museum", "TouristAttraction"],
+            "@id": "https://www.msbb.org/#museum",
+            "identifier": "M012",
+            "url": "https://www.msbb.org/",
+            "name": "Museu Sa Bassa Blanca",
+            "alternateName": "Fundación Yannick y Ben Jakober",
+            "description": "Una mezcla de arte, arquitectura y naturaleza. Cuenta con retratos infantiles del siglo XVI, arte contemporáneo, un parque de esculturas gigante y un jardín de rosas.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Alcúdia",
+                "addressRegion": "Islas Baleares",
+                "streetAddress": "Camí des Coll Baix, s/n"
+            },
+            "containedInPlace": {
+                "@type": "City",
+                "name": "Alcúdia"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8450,
+                "longitude": 3.1663
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+de+Menorca1",
+            "telephone": "+34 971 54 69 15",
+            "sameAs": [],
+            "openingHours": "We-Sa 10:00-18:00",
+            "isAccessibleForFree": false,
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.6",
+                "reviewCount": "1100"
+            },
+            "image": [],
+            "video_url": null,
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "name": "artStyle",
+                    "value": "Arte Contemporáneo / Clásico"
+                },
+                {
+                    "@type": "PropertyValue",
+                    "name": "foundingDate",
+                    "value": "1993"
                 }
             ]
         }
