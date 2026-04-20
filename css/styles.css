@@ -1280,62 +1280,77 @@ body.drawer-open .map-leaflet {
   }
 }
 
+/* ============================================
+   Responsive: Móviles y Tablets (Max 768px)
+   ============================================ */
 @media (max-width: 768px) {
-  /* Menú sempre visible (sense drawer) */
+  
+  /* 1. Mostramos el botón de hamburguesa */
   .nav-toggle {
-    display: none;
+    display: block;
+    z-index: 9200; /* Por encima del drawer para poder cerrarlo */
+    position: relative;
   }
 
+  /* Animación a 'X' de la hamburguesa */
+  .nav-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+  }
+  .nav-toggle[aria-expanded="true"] .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+  .nav-toggle[aria-expanded="true"] .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  /* 2. Ocultamos el clima, pero NO los widgets (para no ocultar el botón) */
   .weather-widget {
     display: none;
   }
 
-  .header-widgets {
-    display: none;
-  }
-
-  .header-inner {
-    flex-wrap: wrap;
-    align-items: flex-start;
-    row-gap: 0.75rem;
-  }
-
+  /* 3. Convertimos el menú en un Drawer lateral */
   .main-nav.drawer-nav {
-    position: static;
-    width: 100%;
-    max-width: none;
-    height: auto;
-    transform: none;
-    box-shadow: none;
-    padding: 0;
-    flex: 1 1 100%;
-    order: 3;
-    background: transparent;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto fuera de la pantalla */
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--color-bg-card);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 9100;
+    transition: right 0.3s ease;
+    padding: 5rem 1.5rem 2rem; /* Espacio para el botón X */
+    overflow-y: auto;
   }
 
+  /* Clase que añade JS para que entre el menú */
+  .main-nav.drawer-nav.is-open {
+    right: 0;
+  }
+
+  /* 4. Estilos de los enlaces en versión móvil */
   .main-nav ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    gap: 0.35rem 0.65rem;
-    border-top: 1px solid var(--color-border);
-    padding-top: 0.75rem;
-    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
   }
 
   .main-nav li {
-    border-bottom: none;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .main-nav a {
-    display: inline-block;
-    padding: 0.35rem 0.45rem;
-    font-size: 0.875rem;
-    color: var(--color-primary);
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
   }
 
+  /* 5. Ajustes de grillas para móvil que ya tenías */
   .filters-container {
     grid-template-columns: 1fr;
   }
