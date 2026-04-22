@@ -1,25 +1,32 @@
 {
   "rutes": [
     {
-      "nom": "Art contemporani a Palma",
+      "nom": "L'avantguarda a Palma",
       "illa": "Mallorca",
-      "descripcio": "Es Baluard i Fundació Miró: una jornada d'art modern i contemporani al centre de Palma.",
+      "descripcio": "Descobreix l'art modern i contemporani sense sortir de la capital visitant Es Baluard, la Fundació Miró i la Fundación Juan March.",
       "durada": "1 dia",
-      "museuIds": ["M001", "M004"]
+      "museuIds": ["M001", "M004", "M006"]
     },
     {
-      "nom": "Patrimoni arqueològic a Eivissa",
-      "illa": "Eivissa",
-      "descripcio": "MACE i MAEF: art i arqueologia a Dalt Vila.",
-      "durada": "Migdia",
-      "museuIds": ["M003", "M005"]
+      "nom": "Joies de la Part Forana",
+      "illa": "Mallorca",
+      "descripcio": "Un recorregut pel nord i la serra: del modernisme de Can Prunera a Sóller fins a la fusió d'art i natura a Sa Bassa Blanca d'Alcúdia.",
+      "durada": "1 dia",
+      "museuIds": ["M007", "M012"]
     },
     {
-      "nom": "Història de Menorca",
+      "nom": "Menorca a través del temps",
       "illa": "Menorca",
-      "descripcio": "Museu de Menorca: del món talayòtic a la contemporaneïtat a Maó.",
-      "durada": "Mig dia",
-      "museuIds": ["M002"]
+      "descripcio": "De la història mil·lenària al Museu de Menorca, passant per l'espectacular centre Hauser & Wirth, fins a la sorprenent col·lecció de LÔAC a Alaior.",
+      "durada": "Cap de setmana",
+      "museuIds": ["M002", "M008", "M009"]
+    },
+    {
+      "nom": "El cor d'Eivissa",
+      "illa": "Eivissa",
+      "descripcio": "Passeja per Dalt Vila i gaudeix de l'art contemporani al MACE, descobreix els tresors arqueològics al MAEF i reviu la tradició illenca al Museu Puget.",
+      "durada": "1 dia",
+      "museuIds": ["M003", "M005", "M010"]
     }
   ]
 }

@@ -322,7 +322,7 @@
                 "ratingValue": "4.5",
                 "reviewCount": "890"
             },
-            "image": [],
+            "image": ["media/images/inici/07.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -418,7 +418,7 @@
                 "ratingValue": "4.8",
                 "reviewCount": "120"
             },
-            "image": [],
+            "image": ["media/images/inici/09.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -466,7 +466,7 @@
                 "ratingValue": "4.4",
                 "reviewCount": "340"
             },
-            "image": [],
+            "image": ["media/images/inici/10.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
@@ -478,49 +478,6 @@
                     "@type": "PropertyValue",
                     "name": "foundingDate",
                     "value": "2007"
-                }
-            ]
-        },
-        {
-            "@type": ["Museum", "TouristAttraction"],
-            "@id": "https://www.formentera.es/explorar/cultura/coleccion-etnografica/#museum",
-            "identifier": "M011",
-            "url": "https://www.formentera.es/",
-            "name": "Colección Etnográfica de Formentera",
-            "alternateName": "Col·lecció Etnogràfica",
-            "description": "Ideal para conocer el diseño tradicional y etnográfico de la isla. Muestra el ingenio a través de muebles, herramientas e indumentaria de hace más de un siglo.",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Sant Francesc Xavier",
-                "addressRegion": "Islas Baleares",
-                "streetAddress": "Carrer de Jaume I, s/n"
-            },
-            "containedInPlace": {
-                "@type": "City",
-                "name": "Formentera"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 38.7056,
-                "longitude": 1.4283
-            },
-            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+de+Menorca0",
-            "telephone": "+34 971 32 10 87",
-            "sameAs": [],
-            "openingHours": "Tu-Sa 09:00-14:00",
-            "isAccessibleForFree": true,
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.3",
-                "reviewCount": "180"
-            },
-            "image": [],
-            "video_url": null,
-            "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Etnografía / Diseño Tradicional"
                 }
             ]
         },
@@ -557,7 +514,7 @@
                 "ratingValue": "4.6",
                 "reviewCount": "1100"
             },
-            "image": [],
+            "image": ["media/images/inici/12.jpg"],
             "video_url": null,
             "additionalProperty": [
                 {
