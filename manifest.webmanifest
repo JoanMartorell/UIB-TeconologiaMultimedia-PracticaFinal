@@ -1,0 +1,17 @@
+{
+  "name": "Museus Illes Balears",
+  "short_name": "Museus IB",
+  "description": "Guia de museus d'art i disseny de les Illes Balears: Mallorca, Menorca, Eivissa i Formentera.",
+  "lang": "ca",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1a3a4a",
+  "background_color": "#f8f6f1",
+  "categories": ["culture", "education", "travel"],
+  "icons": [
+    { "src": "media/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

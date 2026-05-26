@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://example.github.io/UIB-TeconologiaMultimedia-PracticaFinal/sitemap.xml

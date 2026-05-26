@@ -1,6 +1,8 @@
 {
   "rutes": [
     {
+      "@type": "TouristTrip",
+      "id": "ruta-avantguarda-palma",
       "nom": "L'avantguarda a Palma",
       "illa": "Mallorca",
       "descripcio": "Descobreix l'art modern i contemporani sense sortir de la capital visitant Es Baluard, la Fundació Miró i la Fundación Juan March.",
@@ -8,6 +10,8 @@
       "museuIds": ["M001", "M004", "M006"]
     },
     {
+      "@type": "TouristTrip",
+      "id": "ruta-part-forana",
       "nom": "Joies de la Part Forana",
       "illa": "Mallorca",
       "descripcio": "Un recorregut pel nord i la serra: del modernisme de Can Prunera a Sóller fins a la fusió d'art i natura a Sa Bassa Blanca d'Alcúdia.",
@@ -15,6 +19,8 @@
       "museuIds": ["M007", "M012"]
     },
     {
+      "@type": "TouristTrip",
+      "id": "ruta-menorca-temps",
       "nom": "Menorca a través del temps",
       "illa": "Menorca",
       "descripcio": "De la història mil·lenària al Museu de Menorca, passant per l'espectacular centre Hauser & Wirth, fins a la sorprenent col·lecció de LÔAC a Alaior.",
@@ -22,6 +28,8 @@
       "museuIds": ["M002", "M008", "M009"]
     },
     {
+      "@type": "TouristTrip",
+      "id": "ruta-cor-eivissa",
       "nom": "El cor d'Eivissa",
       "illa": "Eivissa",
       "descripcio": "Passeja per Dalt Vila i gaudeix de l'art contemporani al MACE, descobreix els tresors arqueològics al MAEF i reviu la tradició illenca al Museu Puget.",

@@ -31,22 +31,14 @@
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.5",
-                "reviewCount": "3200"
+                "ratingValue": 4.5,
+                "reviewCount": 3200
             },
-            "image": ["media/images/inici/01.jpg"],
+            "image": ["data/images/M001/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "2004"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "2004" }
             ]
         },
         {
@@ -79,22 +71,14 @@
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.4",
-                "reviewCount": "850"
+                "ratingValue": 4.4,
+                "reviewCount": 850
             },
-            "image": ["media/images/inici/02.jpg"],
+            "image": ["data/images/M002/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Historia y Arqueología"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1889"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Historia y Arqueología" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1889" }
             ]
         },
         {
@@ -127,22 +111,14 @@
             "isAccessibleForFree": true,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.3",
-                "reviewCount": "410"
+                "ratingValue": 4.3,
+                "reviewCount": 410
             },
-            "image": ["media/images/inici/03.jpg"],
+            "image": ["data/images/M003/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1969"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1969" }
             ]
         },
         {
@@ -175,22 +151,14 @@
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.6",
-                "reviewCount": "4150"
+                "ratingValue": 4.6,
+                "reviewCount": 4150
             },
-            "image": ["media/images/inici/04.jpg"],
+            "image": ["data/images/M004/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo / Surrealismo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1981"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Surrealismo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1981" }
             ]
         },
         {
@@ -223,22 +191,14 @@
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.2",
-                "reviewCount": "380"
+                "ratingValue": 4.2,
+                "reviewCount": 380
             },
-            "image": ["media/images/inici/05.jpg"],
+            "image": ["data/images/M005/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arqueología"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1907"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arqueología" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1907" }
             ]
         },
         {
@@ -264,29 +224,21 @@
                 "latitude": 39.5714,
                 "longitude": 2.6515
             },
-            "hasMap": "http://googleusercontent.com/maps.google.com/5",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Fundacion+Juan+March+Palma",
             "telephone": "+34 971 71 35 15",
             "sameAs": [],
             "openingHours": "Mo-Fr 10:00-18:30; Sa 10:30-14:00",
             "isAccessibleForFree": true,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.6",
-                "reviewCount": "1200"
+                "ratingValue": 4.6,
+                "reviewCount": 1200
             },
-            "image": ["media/images/inici/06.jpg"],
+            "image": ["data/images/M006/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo / Vanguardias"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1990"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Vanguardias" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1990" }
             ]
         },
         {
@@ -312,29 +264,21 @@
                 "latitude": 39.7663,
                 "longitude": 2.7161
             },
-            "hasMap": "http://googleusercontent.com/maps.google.com/6",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Can+Prunera+Soller",
             "telephone": "+34 971 63 89 73",
             "sameAs": [],
             "openingHours": "Tu-Su 10:30-18:00",
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.5",
-                "reviewCount": "890"
+                "ratingValue": 4.5,
+                "reviewCount": 890
             },
-            "image": ["media/images/inici/07.jpg"],
+            "image": ["data/images/M007/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Diseño / Modernismo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "2009"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Diseño / Modernismo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "2009" }
             ]
         },
         {
@@ -360,29 +304,21 @@
                 "latitude": 39.8856,
                 "longitude": 4.2867
             },
-            "hasMap": "http://googleusercontent.com/maps.google.com/7",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Hauser+Wirth+Menorca",
             "telephone": null,
             "sameAs": [],
             "openingHours": "We-Su 10:00-17:00",
             "isAccessibleForFree": true,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.7",
-                "reviewCount": "1500"
+                "ratingValue": 4.7,
+                "reviewCount": 1500
             },
             "image": [],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "2021"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "2021" }
             ]
         },
         {
@@ -408,29 +344,21 @@
                 "latitude": 39.9317,
                 "longitude": 4.1408
             },
-            "hasMap": "http://googleusercontent.com/maps.google.com/8",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=LOAC+Alaior",
             "telephone": "+34 971 37 10 02",
             "sameAs": [],
             "openingHours": "Tu-Sa 10:00-13:30, 17:30-20:30",
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "120"
+                "ratingValue": 4.8,
+                "reviewCount": 120
             },
-            "image": ["media/images/inici/09.jpg"],
+            "image": ["data/images/M009/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "2021"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "2021" }
             ]
         },
         {
@@ -456,29 +384,21 @@
                 "latitude": 38.9065,
                 "longitude": 1.4358
             },
-            "hasMap": "http://googleusercontent.com/maps.google.com/9",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museo+Puget+Ibiza",
             "telephone": "+34 971 39 21 47",
             "sameAs": [],
             "openingHours": "Tu-Su 10:00-14:00",
             "isAccessibleForFree": true,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.4",
-                "reviewCount": "340"
+                "ratingValue": 4.4,
+                "reviewCount": 340
             },
-            "image": ["media/images/inici/10.jpg"],
+            "image": ["data/images/M010/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Costumbrismo / Etnografía"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "2007"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Costumbrismo / Etnografía" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "2007" }
             ]
         },
         {
@@ -504,29 +424,21 @@
                 "latitude": 39.8450,
                 "longitude": 3.1663
             },
-            "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+de+Menorca1",
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=Sa+Bassa+Blanca+Alcudia",
             "telephone": "+34 971 54 69 15",
             "sameAs": [],
             "openingHours": "We-Sa 10:00-18:00",
             "isAccessibleForFree": false,
             "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.6",
-                "reviewCount": "1100"
+                "ratingValue": 4.6,
+                "reviewCount": 1100
             },
-            "image": ["media/images/inici/12.jpg"],
+            "image": ["data/images/M012/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                {
-                    "@type": "PropertyValue",
-                    "name": "artStyle",
-                    "value": "Arte Contemporáneo / Clásico"
-                },
-                {
-                    "@type": "PropertyValue",
-                    "name": "foundingDate",
-                    "value": "1993"
-                }
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Clásico" },
+                { "@type": "PropertyValue", "name": "foundingDate", "value": "1993" }
             ]
         }
     ]

@@ -7,9 +7,44 @@
     <meta name="keywords" content="museus, art, disseny, Illes Balears, Mallorca, Menorca, Eivissa, Formentera, Palma, cultura">
     <meta name="author" content="Tecnologia Multimèdia - UIB">
     <meta name="theme-color" content="#1a3a4a">
+    <meta name="robots" content="index, follow">
     <title>Museus Illes Balears | Art i Disseny</title>
+
+    <!-- Canonical + Open Graph + Twitter Cards (actualitzar amb la URL real del desplegament) -->
+    <link rel="canonical" href="https://example.github.io/UIB-TeconologiaMultimedia-PracticaFinal/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Museus Illes Balears | Art i Disseny">
+    <meta property="og:description" content="Guia de museus d'art i disseny de les Illes Balears: Mallorca, Menorca, Eivissa i Formentera.">
+    <meta property="og:image" content="media/images/inici/01.jpg">
+    <meta property="og:url" content="https://example.github.io/UIB-TeconologiaMultimedia-PracticaFinal/">
+    <meta property="og:locale" content="ca_ES">
+    <meta property="og:site_name" content="Museus Illes Balears">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Museus Illes Balears | Art i Disseny">
+    <meta name="twitter:description" content="Guia de museus d'art i disseny de les Illes Balears.">
+    <meta name="twitter:image" content="media/images/inici/01.jpg">
+
+    <!-- JSON-LD: WebSite amb SearchAction (a més del @graph de Museums que injecta el JS) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Museus Illes Balears",
+      "url": "https://example.github.io/UIB-TeconologiaMultimedia-PracticaFinal/",
+      "inLanguage": "ca-ES",
+      "description": "Guia de museus d'art i disseny de les Illes Balears.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://example.github.io/UIB-TeconologiaMultimedia-PracticaFinal/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="media/logo.svg">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="media/logo.svg">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,47 +108,70 @@
                 <p class="hero-subtitle">Descobreix la riquesa cultural de Mallorca, Menorca, Eivissa i Formentera</p>
             </div>
             <div class="hero-carousel-dots" role="tablist" aria-label="Imatges de la portada"></div>
-            <div id="filtros" class="filters-section hero-filters" aria-labelledby="filtros-title">
-                <h2 id="filtros-title" class="visually-hidden">Filtres de cerca</h2>
-                <div class="filters-container">
-                    <div class="filter-group">
-                        <label for="filter-island">Illa</label>
-                        <select id="filter-island" aria-label="Filtrar per illa">
-                            <option value="">Totes les illes</option>
-                            <option value="Mallorca">Mallorca</option>
-                            <option value="Menorca">Menorca</option>
-                            <option value="Ibiza">Eivissa</option>
-                            <option value="Formentera">Formentera</option>
-                        </select>
+            <form id="filters-form" class="filters-section hero-filters" role="search" aria-labelledby="filtros-title" novalidate>
+                <fieldset>
+                    <legend id="filtros-title" class="visually-hidden">Cerca i filtres de museus</legend>
+                    <div class="filters-container">
+                        <div class="filter-group filter-group-search">
+                            <label for="filter-q">Cerca</label>
+                            <input type="search" id="filter-q" name="q" minlength="2" maxlength="80"
+                                   placeholder="Nom, descripció, paraula clau…"
+                                   autocomplete="off"
+                                   aria-describedby="search-error">
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-island">Illa</label>
+                            <select id="filter-island" name="island">
+                                <option value="">Totes les illes</option>
+                                <option value="Mallorca">Mallorca</option>
+                                <option value="Menorca">Menorca</option>
+                                <option value="Ibiza">Eivissa</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-style">Estil artístic</label>
+                            <select id="filter-style" name="style">
+                                <option value="">Tots els estils</option>
+                                <option value="Arte Contemporáneo">Art contemporani</option>
+                                <option value="Historia y Arqueología">Història i arqueologia</option>
+                                <option value="Arqueología">Arqueologia</option>
+                                <option value="Surrealismo">Surrealisme</option>
+                                <option value="Modernismo">Modernisme</option>
+                                <option value="Etnografía">Etnografia</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filter-free">Entrada gratuïta</label>
+                            <select id="filter-free" name="free">
+                                <option value="">Tots</option>
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="filter-search-action">
+                            <button type="submit" class="btn btn-primary">Cercar</button>
+                            <button type="reset" class="btn btn-secondary">Netejar</button>
+                        </div>
                     </div>
-                    <div class="filter-group">
-                        <label for="filter-style">Estil artístic</label>
-                        <select id="filter-style" aria-label="Filtrar per estil artístic">
-                            <option value="">Tots els estils</option>
-                            <option value="Arte Contemporáneo">Art contemporani</option>
-                            <option value="Historia y Arqueología">Història i arqueologia</option>
-                            <option value="Arqueología">Arqueologia</option>
-                            <option value="Arte Contemporáneo / Surrealismo">Surrealisme</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="filter-free">Entrada gratuïta</label>
-                        <select id="filter-free" aria-label="Filtrar per entrada gratuïta">
-                            <option value="">Tots</option>
-                            <option value="true">Sí</option>
-                            <option value="false">No</option>
-                        </select>
-                    </div>
-                    <div class="filter-search-action">
-                        <span class="filter-search-spacer" aria-hidden="true"></span>
-                        <a href="index.html#museus" class="btn btn-primary">Cercar</a>
-                    </div>
-                </div>
-            </div>
+                    <output id="search-error" for="filter-q" role="alert" class="form-error visually-hidden"></output>
+                </fieldset>
+            </form>
         </section>
 
         <section id="museus" class="museums-section" aria-labelledby="museus-title">
-            <h2 id="museus-title">Els nostres museus</h2>
+            <div class="museums-section-head">
+                <h2 id="museus-title">Els nostres museus</h2>
+                <div class="museums-toolbar">
+                    <button type="button" id="btn-sort-proximity" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/>
+                            <circle cx="12" cy="9" r="3"/>
+                        </svg>
+                        Ordenar per proximitat
+                    </button>
+                    <span id="sort-status" class="sort-status" aria-live="polite"></span>
+                </div>
+            </div>
             <div id="museums-grid" class="museums-grid" role="list">
                 <!-- Generat dinàmicament per JS -->
             </div>
@@ -156,13 +214,24 @@
     </dialog>
     <footer class="site-footer" role="contentinfo">
         <div class="footer-inner">
-            <p>&copy; 2025 Museus Illes Balears. Pràctica final Tecnologia Multimèdia - UIB.</p>
+            <p>&copy; <span id="footer-year">2026</span> Museus Illes Balears. Pràctica final Tecnologia Multimèdia - UIB.</p>
             <p>Dades estructurades segons <a href="https://schema.org/Museum" rel="noopener noreferrer" target="_blank">Schema.org</a>.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
     <script src="js/utils.js" defer></script>
+    <script src="js/state.js" defer></script>
+    <script src="js/data.js" defer></script>
+    <script src="js/render.js" defer></script>
+    <script src="js/modal.js" defer></script>
+    <script src="js/filters.js" defer></script>
+    <script src="js/map.js" defer></script>
+    <script src="js/favorites.js" defer></script>
+    <script src="js/weather.js" defer></script>
+    <script src="js/geolocation.js" defer></script>
+    <script src="js/speech.js" defer></script>
+    <script src="js/pwa.js" defer></script>
     <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -367,8 +367,15 @@ body.page-home .site-header {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide {
-    transition: none;
+  .hero-slide,
+  .museum-card,
+  .ruta-card,
+  .btn,
+  .skeleton-image,
+  .skeleton-line,
+  .toast {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -434,11 +441,62 @@ body.page-home .site-header {
   fill: var(--color-accent);
 }
 
-/* Filtros */
+/* Filtros (form) */
 .filters-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
+}
+
+/* Reset visual del fieldset: el legend va oculto, el borde no aporta. */
+.filters-section fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-group input[type="search"] {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+  background: var(--color-bg-card);
+}
+
+.filter-group input[type="search"]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+.filter-group input[type="search"][aria-invalid="true"] {
+  border-color: #c53030;
+  box-shadow: 0 0 0 2px rgba(197, 48, 48, 0.15);
+}
+
+.form-error {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  background: rgba(197, 48, 48, 0.08);
+  border-left: 3px solid #c53030;
+  color: #7a1d1d;
+  font-size: 0.875rem;
+  border-radius: var(--radius);
+}
+
+.filter-search-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-search-action .btn {
+  width: 100%;
+  min-width: 7rem;
+  justify-content: center;
 }
 
 .hero-fullscreen .hero-filters {
@@ -466,10 +524,13 @@ body.page-home .site-header {
 
 .filters-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(min-content, max-content);
+  grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(0, 1fr)) minmax(min-content, max-content);
   gap: 1rem;
   align-items: end;
-  flex-wrap: wrap;
+}
+
+.filter-group-search {
+  min-width: 0;
 }
 
 .filter-group {
@@ -493,23 +554,7 @@ body.page-home .site-header {
   min-width: 160px;
 }
 
-.filter-search-action {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.25rem;
-}
-
-.filter-search-spacer {
-  min-height: calc(0.875rem * 1.25 + 0.25rem);
-  flex-shrink: 0;
-}
-
-.filter-search-action .btn {
-  width: 100%;
-  min-width: 7.5rem;
-  justify-content: center;
-}
+/* (.filter-search-action y .filter-search-spacer ahora definidos arriba con el form) */
 
 /* Àncores: espai sota el header fix (page-home) perquè es vegi el títol de la secció */
 #museus,
@@ -530,6 +575,35 @@ body.page-home .site-header {
   font-size: 1.75rem;
   margin: 0 0 1.5rem;
   color: var(--color-primary);
+}
+
+.museums-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.museums-section-head h2 {
+  margin-bottom: 0.75rem;
+}
+
+.museums-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.museums-toolbar .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.sort-status {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
 }
 
 .museums-grid {
@@ -1278,6 +1352,10 @@ body.drawer-open .map-leaflet {
   .filters-container {
     grid-template-columns: 1fr 1fr;
   }
+
+  .filter-group-search {
+    grid-column: 1 / -1;
+  }
 }
 
 /* ============================================
@@ -1455,6 +1533,173 @@ body.drawer-open .map-leaflet {
 .modal-body-scroll {
   overflow-y: auto;
   overscroll-behavior: contain; /* Evita que el scroll del modal mueva la página de fondo */
+}
+
+/* ============================================
+   Carousel d'imatges dins el modal de museu
+   ============================================ */
+
+/* Cap compacta: ja no porta imatge de fons (la galeria la mostra el carousel) */
+.museu-header-compact {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: #fff;
+  padding: 1.25rem 1.5rem;
+}
+
+.museu-header-compact h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.museu-header-compact .museu-header-alt {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+.museu-carousel {
+  position: relative;
+  margin: 0 0 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg);
+  outline: none;
+}
+
+.museu-carousel:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-accent);
+}
+
+/* Track horitzontal amb scroll-snap nadiu: swipe tàctil i fluid. */
+.museu-carousel-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.museu-carousel-track::-webkit-scrollbar { display: none; }
+
+.museu-carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: 360px;
+  object-fit: cover;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: var(--color-border);
+  display: block;
+}
+
+/* Versions amb una sola imatge o sense imatges */
+.museu-carousel-single .museu-carousel-slide {
+  flex: 0 0 100%;
+  max-height: 360px;
+}
+
+.museu-carousel-empty {
+  aspect-ratio: 16 / 9;
+  max-height: 240px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+}
+
+/* Fletxes: només visibles quan hi ha hover/focus o en touch sempre */
+.museu-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition), transform var(--transition);
+  z-index: 2;
+}
+
+.museu-carousel-arrow:hover,
+.museu-carousel-arrow:focus-visible {
+  background: var(--color-primary);
+  color: #fff;
+  outline: none;
+}
+
+.museu-carousel-prev { left: 0.5rem; }
+.museu-carousel-next { right: 0.5rem; }
+
+/* Dots inferiors */
+.museu-carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  z-index: 2;
+}
+
+.museu-carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.museu-carousel-dot:hover { background: rgba(255, 255, 255, 0.85); }
+.museu-carousel-dot.is-active { background: #fff; transform: scale(1.3); }
+
+.museu-carousel-dot:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Comptador superior dret (n/total) */
+.museu-carousel-counter {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  z-index: 2;
+}
+
+/* Mòbils: fletxes lleugerament més petites i sempre visibles */
+@media (max-width: 600px) {
+  .museu-carousel-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .museu-carousel-slide {
+    max-height: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .museu-carousel-track {
+    scroll-behavior: auto;
+  }
 }
 
 /* Botón flotante para cerrar el modal */
