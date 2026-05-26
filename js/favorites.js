@@ -1,15 +1,18 @@
 /**
  * Museus Illes Balears — Favorits
  * Persisteix la llista d'IDs a localStorage i sincronitza els botons del grid.
+ *
+ * Usem event delegation als contenidors estables (#museums-grid, #favorites-list)
+ * perquè es regeneren amb cada cerca/filtre i no perdin l'event listener.
  */
 (function () {
   'use strict';
 
   const state = window.MuseusApp.state;
 
-  /** Click sobre qualsevol botó `[data-favorite]` del grid o la llista. */
-  function handleFavoriteClick(e) {
-    const btn = e.currentTarget;
+  /** Marca/desmarca un favorit i actualitza UI relacionada (botó + llista + toast). */
+  function handleFavoriteClick(btn) {
+    if (!btn) return;
     const id = btn.dataset.favorite;
     Utils.storage.toggleFavorite(id);
     const isFav = Utils.storage.isFavorite(id);
@@ -17,7 +20,7 @@
     btn.setAttribute('aria-label', isFav ? 'Treure de favorits' : 'Afegir a favorits');
     const svg = btn.querySelector('svg');
     if (svg) svg.setAttribute('fill', isFav ? 'currentColor' : 'none');
-    refresh();
+    renderFavorites(Utils.storage.getFavorites());
     Utils.showToast(isFav ? 'Guardat a favorits' : 'Tret de favorits', 'success');
   }
 
@@ -43,25 +46,26 @@
         </button>
       </div>
     `).join('');
-
-    list.querySelectorAll('[data-favorite]').forEach(btn => btn.addEventListener('click', handleFavoriteClick));
   }
 
-  /** Re-cablat de tots els botons de favorit dins el grid principal. */
-  function bindGridFavorites() {
-    document.querySelectorAll('#museums-grid [data-favorite]').forEach(btn => {
-      btn.removeEventListener('click', handleFavoriteClick);
-      btn.addEventListener('click', handleFavoriteClick);
+  /** Configura delegació un cop a cada contenidor estable. */
+  function setupFavorites() {
+    ['museums-grid', 'favorites-list'].forEach(containerId => {
+      const container = document.getElementById(containerId);
+      if (!container || container.dataset.favoritesBound === '1') return;
+      container.dataset.favoritesBound = '1';
+      container.addEventListener('click', e => {
+        const btn = e.target.closest('[data-favorite]');
+        if (btn && container.contains(btn)) handleFavoriteClick(btn);
+      });
     });
+    refresh();
   }
 
-  /** Refresca grid + llista després d'un canvi de favorits. */
+  /** Refresca la llista de favorits (la delegació al grid no cal re-vincular-la). */
   function refresh() {
-    bindGridFavorites();
     renderFavorites(Utils.storage.getFavorites());
   }
-
-  function setupFavorites() { refresh(); }
 
   window.MuseusApp.favorites = { setupFavorites, renderFavorites, refresh };
 })();

@@ -67,9 +67,9 @@
     const name = (museum?.name || '').toLowerCase();
     if (locality.includes('Palma') || locality.includes('Mallorca') ||
         locality === 'Sóller' || locality === 'Alcúdia') return 'Mallorca';
-    if (locality === 'Mahón' || locality === 'Alaior' || locality.includes('Menorca')) return 'Menorca';
+    if (locality === 'Maó' || locality === 'Mahón' || locality === 'Alaior' || locality.includes('Menorca')) return 'Menorca';
     if (name.includes('formentera')) return 'Formentera';
-    if (locality.includes('Ibiza') || locality.includes('Eivissa')) return 'Ibiza';
+    if (locality.includes('Eivissa') || locality.includes('Ibiza')) return 'Eivissa';
     return locality || 'Balears';
   }
 

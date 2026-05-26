@@ -8,12 +8,12 @@
             "url": "https://esbaluard.org/",
             "name": "Es Baluard Museu d'Art Contemporani de Palma",
             "alternateName": "Es Baluard",
-            "description": "Museo de arte moderno y contemporáneo situado en Palma. Cuenta con un fondo de más de 700 obras de artistas vinculados al ámbito balear y mediterráneo.",
+            "description": "Museu d'art modern i contemporani situat a Palma. Compta amb un fons de més de 700 obres d'artistes vinculats a l'àmbit balear i mediterrani.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Palma de Mallorca",
-                "addressRegion": "Islas Baleares",
-                "streetAddress": "Plaza Porta de Santa Catalina, 10"
+                "addressLocality": "Palma",
+                "addressRegion": "Illes Balears",
+                "streetAddress": "Plaça Porta de Santa Catalina, 10"
             },
             "containedInPlace": {
                 "@type": "City",
@@ -26,7 +26,7 @@
             },
             "hasMap": "https://www.google.com/maps/search/?api=1&query=Es+Baluard+Museu+d'Art+Contemporani+de+Palma",
             "telephone": "+34 971 90 82 00",
-            "sameAs": ["https://es.wikipedia.org/wiki/Es_Baluard"],
+            "sameAs": ["https://ca.wikipedia.org/wiki/Es_Baluard"],
             "openingHours": "Tu-Sa 10:00-20:00; Su 10:00-15:00",
             "isAccessibleForFree": false,
             "aggregateRating": {
@@ -37,7 +37,7 @@
             "image": ["data/images/M001/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "2004" }
             ]
         },
@@ -48,16 +48,16 @@
             "url": "https://www.museudemenorca.com/",
             "name": "Museu de Menorca",
             "alternateName": "Museo de Menorca",
-            "description": "Ubicado en un antiguo convento franciscano en Mahón, es la institución museística más importante de la isla, recogiendo la historia de Menorca desde la prehistoria (cultura talayótica) hasta la actualidad.",
+            "description": "Ubicat en un antic convent franciscà a Maó, és la institució museística més important de l'illa, i recull la història de Menorca des de la prehistòria (cultura talaiòtica) fins a l'actualitat.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Mahón",
-                "addressRegion": "Islas Baleares",
+                "addressLocality": "Maó",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Pla des Monestir, 9"
             },
             "containedInPlace": {
                 "@type": "City",
-                "name": "Mahón"
+                "name": "Maó"
             },
             "geo": {
                 "@type": "GeoCoordinates",
@@ -77,7 +77,7 @@
             "image": ["data/images/M002/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Historia y Arqueología" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Història i Arqueologia" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1889" }
             ]
         },
@@ -88,16 +88,16 @@
             "url": "https://mace.eivissa.es/",
             "name": "Museu d'Art Contemporani d'Eivissa",
             "alternateName": "MACE",
-            "description": "Situado en la zona amurallada de Dalt Vila, este museo alberga una destacada colección de arte contemporáneo creada en las islas Pitiusas a partir de la década de 1960.",
+            "description": "Situat a la zona emmurallada de Dalt Vila, aquest museu acull una destacada col·lecció d'art contemporani creada a les Pitiüses a partir de la dècada de 1960.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Ibiza",
-                "addressRegion": "Islas Baleares",
+                "addressLocality": "Eivissa",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Ronda de Narcís Puget, s/n"
             },
             "containedInPlace": {
                 "@type": "City",
-                "name": "Ibiza"
+                "name": "Eivissa"
             },
             "geo": {
                 "@type": "GeoCoordinates",
@@ -117,7 +117,7 @@
             "image": ["data/images/M003/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1969" }
             ]
         },
@@ -127,12 +127,12 @@
             "identifier": "M004",
             "url": "https://miromallorca.com/",
             "name": "Fundació Miró Mallorca",
-            "alternateName": "Fundación Pilar y Joan Miró",
-            "description": "Institución cultural en Palma de Mallorca basada en los talleres que el artista Joan Miró legó al público. Ofrece una visión única de su proceso creativo.",
+            "alternateName": "Fundació Pilar i Joan Miró",
+            "description": "Institució cultural a Palma basada en els tallers que l'artista Joan Miró va llegar al públic. Ofereix una visió única del seu procés creatiu.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Palma de Mallorca",
-                "addressRegion": "Islas Baleares",
+                "addressLocality": "Palma",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Carrer de Saridakis, 29"
             },
             "containedInPlace": {
@@ -146,7 +146,7 @@
             },
             "hasMap": "https://www.google.com/maps/search/?api=1&query=Fundacio+Miro+Mallorca",
             "telephone": "+34 971 70 14 20",
-            "sameAs": ["https://es.wikipedia.org/wiki/Fundaci%C3%B3n_Pilar_y_Joan_Mir%C3%B3"],
+            "sameAs": ["https://ca.wikipedia.org/wiki/Fundació_Pilar_i_Joan_Miró_a_Mallorca"],
             "openingHours": "Tu-Sa 10:00-18:00; Su 10:00-15:00",
             "isAccessibleForFree": false,
             "aggregateRating": {
@@ -157,7 +157,7 @@
             "image": ["data/images/M004/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Surrealismo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Surrealisme" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1981" }
             ]
         },
@@ -168,16 +168,16 @@
             "url": "https://maef.eu/",
             "name": "Museu Arqueològic d'Eivissa i Formentera",
             "alternateName": "MAEF",
-            "description": "Museo que conserva y expone los restos históricos encontrados en las islas Pitiusas, abarcando desde la prehistoria hasta la época islámica.",
+            "description": "Museu que conserva i exposa les restes històriques trobades a les Pitiüses, des de la prehistòria fins a l'època islàmica.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Ibiza",
-                "addressRegion": "Islas Baleares",
-                "streetAddress": "Vía Romana, 31"
+                "addressLocality": "Eivissa",
+                "addressRegion": "Illes Balears",
+                "streetAddress": "Via Romana, 31"
             },
             "containedInPlace": {
                 "@type": "City",
-                "name": "Ibiza"
+                "name": "Eivissa"
             },
             "geo": {
                 "@type": "GeoCoordinates",
@@ -186,7 +186,7 @@
             },
             "hasMap": "https://www.google.com/maps/search/?api=1&query=Museu+Arqueològic+d'Eivissa+i+Formentera",
             "telephone": "+34 971 30 17 71",
-            "sameAs": ["https://es.wikipedia.org/wiki/Museo_Arqueol%C3%B3gico_de_Ibiza_y_Formentera"],
+            "sameAs": ["https://ca.wikipedia.org/wiki/Museu_Arqueològic_d'Eivissa_i_Formentera"],
             "openingHours": "Tu-Sa 09:00-15:00; Su 10:00-14:00",
             "isAccessibleForFree": false,
             "aggregateRating": {
@@ -197,7 +197,7 @@
             "image": ["data/images/M005/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arqueología" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Arqueologia" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1907" }
             ]
         },
@@ -206,13 +206,13 @@
             "@id": "https://www.march.es/es/palma#museum",
             "identifier": "M006",
             "url": "https://www.march.es/es/palma",
-            "name": "Museu Fundación Juan March",
-            "alternateName": "Fundación Juan March Palma",
-            "description": "Ubicado en un edificio del siglo XVII, exhibe una magnífica colección permanente de arte español del siglo XX, incluyendo vanguardias, informalismo y arte pop.",
+            "name": "Museu Fundació Juan March",
+            "alternateName": "Fundació Juan March Palma",
+            "description": "Ubicat en un edifici del segle XVII, exhibeix una magnífica col·lecció permanent d'art espanyol del segle XX, incloent-hi avantguardes, informalisme i pop art.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Palma de Mallorca",
-                "addressRegion": "Islas Baleares",
+                "addressLocality": "Palma",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Carrer de Sant Miquel, 11"
             },
             "containedInPlace": {
@@ -237,7 +237,7 @@
             "image": ["data/images/M006/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Vanguardias" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Avantguardes" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1990" }
             ]
         },
@@ -248,11 +248,11 @@
             "url": "https://canprunera.com/",
             "name": "Can Prunera Museu Modernista",
             "alternateName": "Can Prunera",
-            "description": "Una obra maestra del Art Nouveau (modernismo) en Sóller. El edificio conserva su mobiliario original, vidrieras y detalles arquitectónicos, y alberga colecciones de arte.",
+            "description": "Una obra mestra de l'Art Nouveau (modernisme) a Sóller. L'edifici conserva el mobiliari original, vidrieres i detalls arquitectònics, i acull col·leccions d'art.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Sóller",
-                "addressRegion": "Islas Baleares",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Carrer de sa Lluna, 86-90"
             },
             "containedInPlace": {
@@ -277,7 +277,7 @@
             "image": ["data/images/M007/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Diseño / Modernismo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Disseny / Modernisme" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "2009" }
             ]
         },
@@ -288,16 +288,16 @@
             "url": "https://www.hauserwirth.com/locations/25040-menorca/",
             "name": "Hauser & Wirth Menorca",
             "alternateName": "Illa del Rei Art Center",
-            "description": "Centro de arte internacional situado en la Illa del Rei, en el puerto de Mahón. Combina exposiciones de arte contemporáneo de primer nivel con jardines diseñados por Piet Oudolf.",
+            "description": "Centre d'art internacional situat a l'Illa del Rei, al port de Maó. Combina exposicions d'art contemporani de primer nivell amb jardins dissenyats per Piet Oudolf.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Mahón",
-                "addressRegion": "Islas Baleares",
-                "streetAddress": "Illa del Rei, Puerto de Mahón"
+                "addressLocality": "Maó",
+                "addressRegion": "Illes Balears",
+                "streetAddress": "Illa del Rei, Port de Maó"
             },
             "containedInPlace": {
                 "@type": "City",
-                "name": "Mahón"
+                "name": "Maó"
             },
             "geo": {
                 "@type": "GeoCoordinates",
@@ -317,7 +317,7 @@
             "image": [],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "2021" }
             ]
         },
@@ -328,12 +328,12 @@
             "url": "https://www.loac.es/",
             "name": "LÔAC, Alaior Art Contemporani",
             "alternateName": "LÔAC",
-            "description": "Alberga una de las colecciones privadas de arte contemporáneo más importantes de Baleares, con obras de Miquel Barceló, Joan Miró, Jaume Plensa y Marina Abramović.",
+            "description": "Acull una de les col·leccions privades d'art contemporani més importants de Balears, amb obres de Miquel Barceló, Joan Miró, Jaume Plensa i Marina Abramović.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Alaior",
-                "addressRegion": "Islas Baleares",
-                "streetAddress": "Carrer de des Banyer, 30"
+                "addressRegion": "Illes Balears",
+                "streetAddress": "Carrer des Banyer, 30"
             },
             "containedInPlace": {
                 "@type": "City",
@@ -357,7 +357,7 @@
             "image": ["data/images/M009/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "2021" }
             ]
         },
@@ -366,18 +366,18 @@
             "@id": "https://eivissa.es/museopuget/#museum",
             "identifier": "M010",
             "url": "https://eivissa.es/",
-            "name": "Museo Puget",
-            "alternateName": "Museu Puget",
-            "description": "Situado en Dalt Vila, se centra en el costumbrismo, mostrando acuarelas y óleos que retratan el diseño, la vestimenta y la vida cotidiana tradicional ibicenca.",
+            "name": "Museu Puget",
+            "alternateName": "Museu Puget d'Eivissa",
+            "description": "Situat a Dalt Vila, se centra en el costumisme i mostra aquarel·les i olis que retraten el disseny, la vestimenta i la vida quotidiana tradicional eivissenca.",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Ibiza",
-                "addressRegion": "Islas Baleares",
+                "addressLocality": "Eivissa",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Carrer Major, 18"
             },
             "containedInPlace": {
                 "@type": "City",
-                "name": "Ibiza"
+                "name": "Eivissa"
             },
             "geo": {
                 "@type": "GeoCoordinates",
@@ -397,7 +397,7 @@
             "image": ["data/images/M010/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Costumbrismo / Etnografía" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Costumisme / Etnografia" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "2007" }
             ]
         },
@@ -407,12 +407,12 @@
             "identifier": "M012",
             "url": "https://www.msbb.org/",
             "name": "Museu Sa Bassa Blanca",
-            "alternateName": "Fundación Yannick y Ben Jakober",
-            "description": "Una mezcla de arte, arquitectura y naturaleza. Cuenta con retratos infantiles del siglo XVI, arte contemporáneo, un parque de esculturas gigante y un jardín de rosas.",
+            "alternateName": "Fundació Yannick i Ben Jakober",
+            "description": "Una barreja d'art, arquitectura i natura. Compta amb retrats infantils del segle XVI, art contemporani, un parc d'escultures gegant i un jardí de roses.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Alcúdia",
-                "addressRegion": "Islas Baleares",
+                "addressRegion": "Illes Balears",
                 "streetAddress": "Camí des Coll Baix, s/n"
             },
             "containedInPlace": {
@@ -437,7 +437,7 @@
             "image": ["data/images/M012/01.jpg"],
             "video_url": null,
             "additionalProperty": [
-                { "@type": "PropertyValue", "name": "artStyle", "value": "Arte Contemporáneo / Clásico" },
+                { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Clàssic" },
                 { "@type": "PropertyValue", "name": "foundingDate", "value": "1993" }
             ]
         }

@@ -78,6 +78,7 @@
                     <li><a href="index.html#rutes">Rutes</a></li>
                     <li><a href="index.html#mapa">Mapa</a></li>
                     <li><a href="index.html#favoritos">Favorits</a></li>
+                    <li><a href="index.html#nosaltres">Nosaltres</a></li>
                 </ul>
             </nav>
         </div>
@@ -125,19 +126,21 @@
                                 <option value="">Totes les illes</option>
                                 <option value="Mallorca">Mallorca</option>
                                 <option value="Menorca">Menorca</option>
-                                <option value="Ibiza">Eivissa</option>
+                                <option value="Eivissa">Eivissa</option>
                             </select>
                         </div>
                         <div class="filter-group">
                             <label for="filter-style">Estil artístic</label>
                             <select id="filter-style" name="style">
                                 <option value="">Tots els estils</option>
-                                <option value="Arte Contemporáneo">Art contemporani</option>
-                                <option value="Historia y Arqueología">Història i arqueologia</option>
-                                <option value="Arqueología">Arqueologia</option>
-                                <option value="Surrealismo">Surrealisme</option>
-                                <option value="Modernismo">Modernisme</option>
-                                <option value="Etnografía">Etnografia</option>
+                                <option value="Art Contemporani">Art contemporani</option>
+                                <option value="Història i Arqueologia">Història i arqueologia</option>
+                                <option value="Arqueologia">Arqueologia</option>
+                                <option value="Surrealisme">Surrealisme</option>
+                                <option value="Modernisme">Modernisme</option>
+                                <option value="Etnografia">Etnografia</option>
+                                <option value="Avantguardes">Avantguardes</option>
+                                <option value="Costumisme">Costumisme</option>
                             </select>
                         </div>
                         <div class="filter-group">
@@ -150,7 +153,7 @@
                         </div>
                         <div class="filter-search-action">
                             <button type="submit" class="btn btn-primary">Cercar</button>
-                            <button type="reset" class="btn btn-secondary">Netejar</button>
+                            <button type="reset" class="btn btn-secondary" id="btn-clear-filters-form" hidden>Netejar</button>
                         </div>
                     </div>
                     <output id="search-error" for="filter-q" role="alert" class="form-error visually-hidden"></output>
@@ -198,6 +201,14 @@
                 <p id="favorites-empty" class="favorites-empty">Afegeix museus a favorits per veure'ls aquí.</p>
             </div>
         </section>
+
+        <section id="nosaltres" class="team-section" aria-labelledby="nosaltres-title">
+            <h2 id="nosaltres-title">Nosaltres</h2>
+            <p class="team-intro">Som dos estudiants de la UIB que hem desenvolupat aquesta guia com a pràctica final de l'assignatura Tecnologia Multimèdia.</p>
+            <div id="team-list" class="team-list" role="list">
+                <p class="team-empty">Carregant equip…</p>
+            </div>
+        </section>
     </main>
     <dialog id="museu-modal" class="museu-modal" aria-labelledby="modal-title">
         <div class="modal-content">
@@ -231,6 +242,7 @@
     <script src="js/weather.js" defer></script>
     <script src="js/geolocation.js" defer></script>
     <script src="js/speech.js" defer></script>
+    <script src="js/team.js" defer></script>
     <script src="js/pwa.js" defer></script>
     <script src="js/main.js" defer></script>
 </body>

@@ -110,8 +110,8 @@
           </div>
         `;
         noResults.querySelector('#btn-clear-filters')?.addEventListener('click', () => {
+          // El listener 'reset' del form actualitza estat + UI + botó Netejar.
           document.getElementById('filters-form')?.reset();
-          window.MuseusApp.filters?.applyFilters();
         });
       }
       return;

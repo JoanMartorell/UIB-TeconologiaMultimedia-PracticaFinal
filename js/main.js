@@ -83,7 +83,8 @@
       { id: 'museus', el: document.getElementById('museus') },
       { id: 'rutes', el: document.getElementById('rutes') },
       { id: 'mapa', el: document.getElementById('mapa') },
-      { id: 'favoritos', el: document.getElementById('favoritos') }
+      { id: 'favoritos', el: document.getElementById('favoritos') },
+      { id: 'nosaltres', el: document.getElementById('nosaltres') }
     ];
 
     const observer = new IntersectionObserver(entries => {
@@ -168,6 +169,9 @@
 
     await App.data.loadRutes();
     App.render.renderRutes(App.state.rutes);
+
+    // L'equip es carrega en paral·lel amb la resta (no bloqueja la UI principal)
+    App.team?.setupTeam();
   }
 
   if (document.readyState === 'loading') {

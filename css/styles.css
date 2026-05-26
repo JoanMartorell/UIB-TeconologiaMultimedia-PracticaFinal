@@ -487,16 +487,32 @@ body.page-home .site-header {
   border-radius: var(--radius);
 }
 
+/* Botons d'acció: en fila, alineats a la dreta de la fila de filtres */
 .filter-search-action {
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.5rem;
+  align-self: end;
 }
 
 .filter-search-action .btn {
-  width: 100%;
-  min-width: 7rem;
+  min-width: 6.5rem;
   justify-content: center;
+  white-space: nowrap;
+}
+
+/* El botó Netejar queda ocult fins que hi ha filtres aplicats; el JS l'amaga amb [hidden] */
+.filter-search-action .btn[hidden] {
+  display: none;
+}
+
+/* Mòbil: els dos botons s'estiren al 50% per omplir la fila sencera */
+@media (max-width: 768px) {
+  .filter-search-action .btn {
+    flex: 1;
+  }
 }
 
 .hero-fullscreen .hero-filters {
@@ -560,7 +576,8 @@ body.page-home .site-header {
 #museus,
 #rutes,
 #mapa,
-#favoritos {
+#favoritos,
+#nosaltres {
   scroll-margin-top: 5.5rem;
 }
 
@@ -1141,6 +1158,142 @@ body.drawer-open .map-leaflet {
   background: var(--color-bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   Secció Nosaltres (equip)
+   ============================================ */
+.team-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.team-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-primary);
+}
+
+.team-intro {
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.team-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.team-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Avatar amb inicials de fons i foto opcional al davant */
+.team-avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  overflow: hidden;
+}
+
+.team-avatar-initials {
+  user-select: none;
+}
+
+.team-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-name {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+  color: var(--color-text);
+}
+
+.team-role,
+.team-affiliation,
+.team-desc {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.team-affiliation {
+  font-weight: 600;
+}
+
+.team-desc {
+  margin-bottom: 0.65rem;
+  font-size: 0.875rem;
+}
+
+.team-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.team-email:hover,
+.team-email:focus {
+  text-decoration: underline;
+}
+
+.team-empty {
+  grid-column: 1 / -1;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Mòbil: targeta vertical, avatar centrat */
+@media (max-width: 480px) {
+  .team-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .team-email {
+    justify-content: center;
+  }
 }
 
 /* TTS (fitxa de museu) */

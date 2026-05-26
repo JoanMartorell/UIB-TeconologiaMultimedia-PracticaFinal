@@ -52,6 +52,25 @@
     }
   }
 
+  /** True si l'usuari té algun filtre actiu (text o select). */
+  function hasActiveFilters() {
+    const f = state.activeFilters;
+    return !!(f.q || f.island || f.style || f.free);
+  }
+
+  /** Mostra/amaga el botó Netejar segons hi hagi filtres aplicats. */
+  function updateClearButtonVisibility() {
+    const btn = document.getElementById('btn-clear-filters-form');
+    if (!btn) return;
+    btn.hidden = !hasActiveFilters();
+  }
+
+  /** Scroll suau a la secció de museus (per a quan l'usuari clica Cercar). */
+  function scrollToResults() {
+    const target = document.getElementById('museus');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   /** Cablat únic del formulari (submit, reset, change, input amb debounce). */
   function setupFilters() {
     const form = document.getElementById('filters-form');
@@ -70,9 +89,16 @@
         free: free?.value || ''
       };
       applyFilters();
+      updateClearButtonVisibility();
     };
 
-    form.addEventListener('submit', e => { e.preventDefault(); syncAndApply(); });
+    // Submit (click "Cercar" o Enter): aplica filtres i fa scroll als resultats.
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      syncAndApply();
+      scrollToResults();
+    });
+
     form.addEventListener('reset', () => {
       // Esperem un tick per a que el reset s'hagi propagat als camps.
       setTimeout(syncAndApply, 0);
@@ -80,6 +106,8 @@
 
     [island, style, free].forEach(el => el?.addEventListener('change', syncAndApply));
     q?.addEventListener('input', Utils.debounce(syncAndApply, 200));
+
+    updateClearButtonVisibility();
   }
 
   function getFiltered() { return cachedFiltered.length ? cachedFiltered : state.museums; }
