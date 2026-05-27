@@ -1,0 +1,150 @@
+/* ============================================
+   Fitxa de museu (.museu-article) i galeria
+   ============================================ */
+
+.museu-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.museu-article {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.museu-article .museu-header {
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+}
+
+.museu-article .museu-header h1,
+.museu-article .museu-header h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+}
+
+.museu-article .museu-header .museu-header-alt {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.92;
+  line-height: 1.35;
+}
+
+.museu-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  padding: 0;
+  background: var(--color-bg);
+}
+
+.museu-gallery img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.museu-gallery:has(img:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.museu-gallery:has(img:only-child) img {
+  aspect-ratio: 16/9;
+  max-height: 420px;
+}
+
+.museu-article .museu-body {
+  padding: 2rem;
+}
+
+.museu-article .info-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.museu-article .info-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.museu-article .info-item strong {
+  min-width: 120px;
+}
+
+.museu-article .info-item .info-muted {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.museu-article .info-item a {
+  color: var(--color-primary);
+}
+
+.museu-article .museu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.museu-article .btn-favorite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+}
+
+.museu-article .museu-external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.museu-article .museu-external-links a {
+  margin-right: 0;
+}
+
+.museu-article .museu-related {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.museu-article .museu-related h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.museu-article .museu-related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.museu-article .museu-related li {
+  margin: 0.25rem 0;
+}
+
+/* Bloc de descripció amb botó TTS */
+.museu-description-block {
+  margin-bottom: 1.25rem;
+}
+
+.museu-description-block #museu-description-text {
+  margin: 0 0 0.75rem;
+}

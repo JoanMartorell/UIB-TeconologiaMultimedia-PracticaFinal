@@ -107,30 +107,24 @@ _Cal servidor local: el SW i `fetch('data/…')` no funcionen amb `file://`._
 
 | # | Item | Estat |
 |---|---|---|
-| 1 | URL pública HTTPS sense errors crítics | _Pendent deploy_ |
-| 2 | Versió mòbil usable i navegació funcional | ✅ |
-| 3 | HTML semàntic + jerarquia coherent | ✅ |
-| 4 | CSS separat + propi/framework justificat | ✅ |
-| 5 | JS separat i organitzat en mòduls | ✅ |
-| 6 | Manipulació DOM real | ✅ |
-| 7 | Esdeveniments d'usuari (filtres, botons, etc.) | ✅ |
-| 8 | fetch/async/await per dades i APIs | ✅ |
-| 9 | Control d'errors visible | ✅ |
-| 10 | JSON propi estructurat | ✅ |
-| 11 | JSON extern o API | ✅ Open-Meteo, OSM |
-| 12 | Normalitzar/filtrar/cercar/ordenar | ✅ |
-| 13 | APIs HTML5 (Storage, Geo, Forms, Speech) | ✅ |
-| 14 | APIs externes funcionals | ✅ |
-| 15 | Multimedia propi i optimitzat | ✅ |
-| 16 | Imatges amb alt i carrega eficient | ✅ |
-| 17 | Formularis amb labels, validació, errors | ✅ |
-| 18 | Navegable per teclat amb focus visible | ✅ |
-| 19 | Contrast i legibilitat acceptables | ✅ |
-| 20 | SEO bàsic + URLs raonables | ✅ |
-| 21 | JSON-LD validat i aplicat | ✅ |
-| 22 | PWA: manifest + SW + offline | ✅ |
-| 23 | GitHub públic + URL | _Pendent deploy_ |
-| 24 | Nota de grup proposada | _Vegeu a sota_ |
-| 25 | Vot al millor grup extern | _Vegeu a sota_ |
-
-
+| 1 | Versió mòbil usable i navegació funcional | ✅ |
+| 2 | HTML semàntic + jerarquia coherent | ✅ |
+| 3 | CSS separat + propi/framework justificat | ✅ |
+| 4 | JS separat i organitzat en mòduls | ✅ |
+| 5 | Manipulació DOM real | ✅ |
+| 6 | Esdeveniments d'usuari (filtres, botons, etc.) | ✅ |
+| 7 | fetch/async/await per dades i APIs | ✅ |
+| 8 | Control d'errors visible | ✅ |
+| 9 | JSON propi estructurat | ✅ |
+| 10 | JSON extern o API | ✅ Open-Meteo, OSM |
+| 11 | Normalitzar/filtrar/cercar/ordenar | ✅ |
+| 12 | APIs HTML5 (Storage, Geo, Forms, Speech) | ✅ |
+| 13 | APIs externes funcionals | ✅ |
+| 14 | Multimedia propi i optimitzat | ✅ |
+| 15 | Imatges amb alt i carrega eficient | ✅ |
+| 16 | Formularis amb labels, validació, errors | ✅ |
+| 17 | Navegable per teclat amb focus visible | ✅ |
+| 18 | Contrast i legibilitat acceptables | ✅ |
+| 29 | SEO bàsic + URLs raonables | ✅ |
+| 20 | JSON-LD validat i aplicat | ✅ |
+| 21 | PWA: manifest + SW + offline | ✅ |

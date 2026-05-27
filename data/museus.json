@@ -314,7 +314,7 @@
                 "ratingValue": 4.7,
                 "reviewCount": 1500
             },
-            "image": [],
+            "image": ["data/images/M008/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },

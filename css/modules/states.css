@@ -1,0 +1,108 @@
+/* ============================================
+   Estats: skeleton, empty, error, toast
+   ============================================ */
+
+/* Skeleton loading */
+.skeleton-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 1.25rem;
+}
+
+.skeleton-image {
+  aspect-ratio: 16/10;
+  background: linear-gradient(90deg, var(--color-bg) 25%, var(--color-border) 50%, var(--color-bg) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+  border-radius: var(--radius);
+}
+
+.skeleton-line {
+  height: 1rem;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--color-bg) 25%, var(--color-border) 50%, var(--color-bg) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 2.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.empty-state-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem;
+}
+
+.empty-state-desc {
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+}
+
+/* Error state */
+.error-state {
+  text-align: center;
+  padding: 2.5rem;
+  grid-column: 1 / -1;
+}
+
+.error-state-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem;
+}
+
+.error-state-desc {
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+/* Toast (per sobre del drawer) */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 9500;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toast.toast-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast.toast-error {
+  background: #c53030;
+}

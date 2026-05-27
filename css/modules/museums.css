@@ -1,0 +1,189 @@
+/* ============================================
+   Secció de museus: graella i targetes
+   ============================================ */
+
+.museums-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.museums-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+  color: var(--color-primary);
+}
+
+.museums-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.museums-section-head h2 {
+  margin-bottom: 0.75rem;
+}
+
+.museums-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.museums-toolbar .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.sort-status {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.museums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.museum-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.museum-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.museum-card-image {
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  overflow: hidden;
+}
+
+.museum-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.museum-card-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.museum-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.museum-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.museum-card h3 a:hover {
+  color: var(--color-primary);
+}
+
+.museum-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.museum-card-meta span {
+  background: var(--color-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.museum-card p {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.museum-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.museum-card-links {
+  margin: 0.5rem 0;
+  font-size: 0.8125rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.link-external::after {
+  content: ' ↗';
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.rating svg {
+  fill: var(--color-accent);
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-muted);
+}
+
+/* Animació d'entrada de les targetes (cascada simple amb nth-child) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.museum-card {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.museum-card:nth-child(1) { animation-delay: 0.05s; }
+.museum-card:nth-child(2) { animation-delay: 0.1s; }
+.museum-card:nth-child(3) { animation-delay: 0.15s; }
+.museum-card:nth-child(4) { animation-delay: 0.2s; }
+.museum-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ============================================
+   Responsive: 1 columna en mòbil
+   ============================================ */
+@media (max-width: 768px) {
+  .museums-grid {
+    grid-template-columns: 1fr;
+  }
+}

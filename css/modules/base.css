@@ -1,0 +1,117 @@
+/* ============================================
+   Base: variables, reset, elements globals,
+   accessibilitat i àncores de seccions
+   ============================================ */
+
+:root {
+  --color-primary: #1a3a4a;
+  --color-primary-light: #2d5a6f;
+  --color-accent: #c9a227;
+  --color-accent-hover: #b8921f;
+  --color-bg: #f8f6f1;
+  --color-bg-card: #ffffff;
+  --color-text: #2c2c2c;
+  --color-text-muted: #5a5a5a;
+  --color-border: #e0ddd6;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --shadow-sm: 0 2px 8px rgba(26, 58, 74, 0.08);
+  --shadow-md: 0 4px 16px rgba(26, 58, 74, 0.12);
+  --shadow-lg: 0 8px 32px rgba(26, 58, 74, 0.16);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --transition: 0.2s ease;
+}
+
+/* Reset y base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover, a:focus {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  z-index: 100;
+  border-radius: var(--radius);
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--color-accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Àncores: espai sota el header fix (page-home) perquè es vegi el títol de la secció */
+#museus,
+#rutes,
+#mapa,
+#favoritos,
+#nosaltres {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Preferència global d'accessibilitat: desactiva transicions/animacions */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide,
+  .museum-card,
+  .ruta-card,
+  .btn,
+  .skeleton-image,
+  .skeleton-line,
+  .toast {
+    transition: none !important;
+    animation: none !important;
+  }
+}

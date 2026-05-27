@@ -1,0 +1,25 @@
+/* ============================================
+   Footer
+   ============================================ */
+
+.site-footer {
+  background: var(--color-primary);
+  color: white;
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-inner a {
+  color: var(--color-accent);
+}
+
+.footer-inner p {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}

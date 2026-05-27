@@ -1,0 +1,226 @@
+/* ============================================
+   Header, navegació i drawer mòbil
+   ============================================ */
+
+.site-header {
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+body.page-home .site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 60;
+  background: rgba(248, 246, 241, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: var(--color-primary-light);
+}
+
+.logo-svg {
+  width: 36px;
+  height: 36px;
+}
+
+.header-widgets {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.weather-widget.weather-loading .weather-loading-text {
+  font-style: italic;
+}
+
+.weather-error {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-primary);
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  font-weight: 600;
+  padding: 0.25rem 0;
+}
+
+.main-nav a.active {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/*
+ * Drawer + mapa Leaflet: Leaflet usa z-index interns fins ~1000 (controls, popups).
+ * L'overlay i el menú han d'estar per sobre; si no, el mapa es pinta damunt i es veu "negre".
+ */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.drawer-open .drawer-overlay {
+  display: block;
+  opacity: 1;
+}
+
+body.drawer-open .site-header {
+  z-index: 9100;
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+body.drawer-open .map-leaflet {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   Responsive: nav mòbil (drawer lateral)
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* 1. Mostramos el botón de hamburguesa */
+  .nav-toggle {
+    display: block;
+    z-index: 9200; /* Por encima del drawer para poder cerrarlo */
+    position: relative;
+  }
+
+  /* Animación a 'X' de la hamburguesa */
+  .nav-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+  }
+  .nav-toggle[aria-expanded="true"] .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+  .nav-toggle[aria-expanded="true"] .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  /* 2. Ocultamos el clima, pero NO los widgets (para no ocultar el botón) */
+  .weather-widget {
+    display: none;
+  }
+
+  /* 3. Convertimos el menú en un Drawer lateral */
+  .main-nav.drawer-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto fuera de la pantalla */
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: var(--color-bg-card);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 9100;
+    transition: right 0.3s ease;
+    padding: 5rem 1.5rem 2rem; /* Espacio para el botón X */
+    overflow-y: auto;
+  }
+
+  /* Clase que añade JS para que entre el menú */
+  .main-nav.drawer-nav.is-open {
+    right: 0;
+  }
+
+  /* 4. Estilos de los enlaces en versión móvil */
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .main-nav li {
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    color: var(--color-text);
+  }
+}

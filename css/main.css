@@ -1,0 +1,36 @@
+/* ============================================
+   Museus Illes Balears — main.css
+   Punt d'entrada que importa tots els mòduls
+   Tecnologia Multimèdia — UIB
+   ============================================
+   Ordre dels imports (important per la cascada):
+   1) base         — variables, reset, accessibilitat, àncores
+   2) buttons      — botons reutilitzables (els usen molts mòduls)
+   3) header       — capçalera, nav, drawer mòbil
+   4) hero         — hero fullscreen amb carrusel
+   5) filters      — formulari de filtres
+   6) museums      — secció de museus (graella + targetes)
+   7) states       — skeleton, empty, error, toast
+   8) rutes        — rutes culturals
+   9) map          — mapa Leaflet
+   10) favorites   — llista de favorits
+   11) team        — secció "Nosaltres" (equip)
+   12) museu-detail— fitxa de museu (article + galeria)
+   13) modal       — diàleg + carrusel d'imatges
+   14) footer      — peu de pàgina
+   ============================================ */
+
+@import url('modules/base.css');
+@import url('modules/buttons.css');
+@import url('modules/header.css');
+@import url('modules/hero.css');
+@import url('modules/filters.css');
+@import url('modules/museums.css');
+@import url('modules/states.css');
+@import url('modules/rutes.css');
+@import url('modules/map.css');
+@import url('modules/favorites.css');
+@import url('modules/team.css');
+@import url('modules/museu-detail.css');
+@import url('modules/modal.css');
+@import url('modules/footer.css');
