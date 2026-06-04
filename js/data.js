@@ -25,7 +25,7 @@
     try {
       const [data, manifest] = await Promise.all([
         Utils.fetchJSON('data/museus.json'),
-        Utils.fetchJSON('media/images/museus/manifest.json').catch(() => ({}))
+        Utils.fetchJSON('media/museus/manifest.json').catch(() => ({}))
       ]);
       state.museums = data['@graph'] || [];
       state.imagesManifest = manifest && typeof manifest === 'object' ? manifest : {};

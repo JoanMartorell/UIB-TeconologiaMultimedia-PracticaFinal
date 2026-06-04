@@ -50,14 +50,16 @@
 │   ├── museus.json           # 11 museus en format Schema.org/Museum
 │   ├── rutes.json            # 4 rutes culturals (TouristTrip)
 │   └── team.json             # Dades de l'equip
-└── media/                    # Tots els recursos estàtics (imatges, logo)
+└── media/                    # Tots els recursos estàtics
     ├── logo.svg
     ├── team/                 # Fotos de l'equip
-    └── images/
-        ├── inici/0X.jpg      # Carrusel del hero
-        └── museus/
-            ├── manifest.json # id → llista de fitxers
-            └── {M001..M012}/0X.jpg
+    ├── images/inici/0X.jpg   # Carrusel del hero
+    └── museus/
+        ├── manifest.json     # id → { images:[], audio:[], video:[] }
+        └── {M001..M012}/      # Recursos co-locats per museu
+            ├── images/0X.jpg  # Galeria (carrusel del modal)
+            ├── audio/*.mp3    # Àudio guia (opcional)
+            └── video/*.mp4    # Vídeos (opcional)
 ```
 
 ## Funcionalitats principals

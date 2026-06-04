@@ -186,6 +186,7 @@
 
     const galleryFiles = Utils.getMuseumGalleryFiles(id, state.imagesManifest);
     const carouselBlock = buildCarouselHtml(id, galleryFiles, displayName);
+    const mediaBlock = buildMediaBlocks(id, displayName);
 
     // Museus relacionats (només si n'hi ha 1 o més)
     const related = window.MuseusApp.render.getRelatedMuseums(m, 3);
@@ -204,6 +205,7 @@
       </header>
       <div class="museu-body modal-body-scroll">
         ${carouselBlock}
+        ${mediaBlock}
         <div class="info-grid">${infoGrid}</div>
         ${linksBlock}
         <div class="museu-description-block">
@@ -267,6 +269,55 @@
         <span class="museu-carousel-counter" aria-live="polite">1 / ${list.length}</span>
       </section>
     `;
+  }
+
+  /**
+   * Construeix els blocs d'àudio i vídeo del museu a partir del manifest.
+   * Retorna cadena buida si el museu no té cap recurs d'aquests tipus.
+   */
+  // MIME segons extensió, perquè el navegador sàpiga si pot reproduir el <source>.
+  const MEDIA_MIME = {
+    mp4: 'video/mp4', webm: 'video/webm', ogv: 'video/ogg', mov: 'video/quicktime',
+    mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', ogg: 'audio/ogg', wav: 'audio/wav'
+  };
+
+  /** Atribut type="…" per a un fitxer segons la seva extensió (buit si desconeguda). */
+  function mediaTypeAttr(file) {
+    const ext = (file.split('.').pop() || '').toLowerCase();
+    const mime = MEDIA_MIME[ext];
+    return mime ? ` type="${mime}"` : '';
+  }
+
+  function buildMediaBlocks(id, name) {
+    const videoFiles = Utils.getMuseumMediaFiles(id, 'video', state.imagesManifest);
+    const audioFiles = Utils.getMuseumMediaFiles(id, 'audio', state.imagesManifest);
+    let html = '';
+
+    if (videoFiles.length) {
+      const items = videoFiles.map((file, i) => {
+        const src = Utils.escapeHtml(Utils.museumMediaUrl(id, 'video', file));
+        const label = Utils.escapeHtml(`Vídeo ${i + 1} de ${name || 'el museu'}`);
+        return `<video class="museu-video" controls preload="metadata" playsinline aria-label="${label}">
+          <source src="${src}"${mediaTypeAttr(file)}>
+          El teu navegador no admet la reproducció de vídeo.
+        </video>`;
+      }).join('');
+      html += `<section class="museu-media museu-media-video" aria-label="Vídeos del museu"><h3>Vídeo</h3>${items}</section>`;
+    }
+
+    if (audioFiles.length) {
+      const items = audioFiles.map((file, i) => {
+        const src = Utils.escapeHtml(Utils.museumMediaUrl(id, 'audio', file));
+        const label = Utils.escapeHtml(`Àudio guia ${i + 1} de ${name || 'el museu'}`);
+        return `<audio class="museu-audio" controls preload="none" aria-label="${label}">
+          <source src="${src}"${mediaTypeAttr(file)}>
+          El teu navegador no admet la reproducció d'àudio.
+        </audio>`;
+      }).join('');
+      html += `<section class="museu-media museu-media-audio" aria-label="Àudio guia del museu"><h3>Àudio guia</h3>${items}</section>`;
+    }
+
+    return html;
   }
 
   /** Cablat del carousel: scroll-snap nadiu + fletxes + dots + teclat. */

@@ -148,3 +148,32 @@
 .museu-description-block #museu-description-text {
   margin: 0 0 0.75rem;
 }
+
+/* Blocs d'àudio i vídeo del museu */
+.museu-media {
+  margin: 0 0 1.25rem;
+}
+
+.museu-media h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.museu-media .museu-video {
+  width: 100%;
+  max-height: 60vh;
+  border-radius: var(--radius);
+  background: #000;
+  display: block;
+}
+
+.museu-media .museu-audio {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.museu-media .museu-audio:last-child,
+.museu-media .museu-video:last-child {
+  margin-bottom: 0;
+}

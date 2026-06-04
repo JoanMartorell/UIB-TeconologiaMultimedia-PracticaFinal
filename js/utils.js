@@ -114,17 +114,31 @@
     return new URLSearchParams(window.location.search);
   }
 
-  /** Construeix la URL d'una imatge local del museu. */
-  function museumDataImageUrl(identifier, filename) {
-    if (!identifier || !filename) return '';
-    return `media/images/museus/${identifier}/${filename}`;
+  /** Construeix la URL d'un recurs local del museu (`images` | `audio` | `video`). */
+  function museumMediaUrl(identifier, type, filename) {
+    if (!identifier || !type || !filename) return '';
+    return `media/museus/${identifier}/${type}/${filename}`;
   }
 
-  /** Llista de fitxers d'imatge per a un museu (manifest o `01.jpg` per defecte). */
+  /** URL d'una imatge del museu (drecera de museumMediaUrl amb type='images'). */
+  function museumDataImageUrl(identifier, filename) {
+    return museumMediaUrl(identifier, 'images', filename);
+  }
+
+  /**
+   * Llista de fitxers d'un tipus de media per a un museu segons el manifest.
+   * Suporta el format nou ({ images:[], audio:[], video:[] }).
+   */
+  function getMuseumMediaFiles(identifier, type, manifest) {
+    const entry = manifest?.[identifier];
+    const files = entry?.[type];
+    return Array.isArray(files) ? files : [];
+  }
+
+  /** Llista d'imatges per a un museu (manifest o `01.jpg` per defecte). */
   function getMuseumGalleryFiles(identifier, manifest) {
-    const files = manifest?.[identifier];
-    if (Array.isArray(files) && files.length) return files;
-    return ['01.jpg'];
+    const files = getMuseumMediaFiles(identifier, 'images', manifest);
+    return files.length ? files : ['01.jpg'];
   }
 
   // Exposem l'API global
@@ -132,6 +146,6 @@
     escapeHtml, normalize, haversine, debounce, showToast,
     getProperty, getIsland, formatOpeningHours,
     storage, fetchJSON, getUrlParams,
-    museumDataImageUrl, getMuseumGalleryFiles
+    museumMediaUrl, museumDataImageUrl, getMuseumMediaFiles, getMuseumGalleryFiles
   };
 })();
