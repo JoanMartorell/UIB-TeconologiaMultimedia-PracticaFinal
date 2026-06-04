@@ -117,7 +117,7 @@
   /** Construeix la URL d'una imatge local del museu. */
   function museumDataImageUrl(identifier, filename) {
     if (!identifier || !filename) return '';
-    return `data/images/${identifier}/${filename}`;
+    return `media/images/museus/${identifier}/${filename}`;
   }
 
   /** Llista de fitxers d'imatge per a un museu (manifest o `01.jpg` per defecte). */

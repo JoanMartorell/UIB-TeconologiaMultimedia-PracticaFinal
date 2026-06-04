@@ -46,15 +46,18 @@
 │   ├── speech.js             # Web Speech API (TTS de la descripció)
 │   ├── pwa.js                # Registre del Service Worker
 │   └── main.js               # Bootstrap: hero, scrollspy, drawer, orquestració
-├── data/
+├── data/                     # Només dades estructurades (JSON)
 │   ├── museus.json           # 11 museus en format Schema.org/Museum
 │   ├── rutes.json            # 4 rutes culturals (TouristTrip)
-│   └── images/
-│       ├── manifest.json     # id → llista de fitxers
-│       └── {M001..M012}/01.jpg
-└── media/
+│   └── team.json             # Dades de l'equip
+└── media/                    # Tots els recursos estàtics (imatges, logo)
     ├── logo.svg
-    └── images/inici/0X.jpg   # Carrusel del hero
+    ├── team/                 # Fotos de l'equip
+    └── images/
+        ├── inici/0X.jpg      # Carrusel del hero
+        └── museus/
+            ├── manifest.json # id → llista de fitxers
+            └── {M001..M012}/0X.jpg
 ```
 
 ## Funcionalitats principals

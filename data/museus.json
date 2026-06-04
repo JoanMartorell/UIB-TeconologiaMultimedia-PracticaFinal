@@ -34,7 +34,7 @@
                 "ratingValue": 4.5,
                 "reviewCount": 3200
             },
-            "image": ["data/images/M001/01.jpg"],
+            "image": ["media/images/museus/M001/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
@@ -74,7 +74,7 @@
                 "ratingValue": 4.4,
                 "reviewCount": 850
             },
-            "image": ["data/images/M002/01.jpg"],
+            "image": ["media/images/museus/M002/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Història i Arqueologia" },
@@ -114,7 +114,7 @@
                 "ratingValue": 4.3,
                 "reviewCount": 410
             },
-            "image": ["data/images/M003/01.jpg"],
+            "image": ["media/images/museus/M003/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
@@ -154,7 +154,7 @@
                 "ratingValue": 4.6,
                 "reviewCount": 4150
             },
-            "image": ["data/images/M004/01.jpg"],
+            "image": ["media/images/museus/M004/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Surrealisme" },
@@ -194,7 +194,7 @@
                 "ratingValue": 4.2,
                 "reviewCount": 380
             },
-            "image": ["data/images/M005/01.jpg"],
+            "image": ["media/images/museus/M005/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Arqueologia" },
@@ -234,7 +234,7 @@
                 "ratingValue": 4.6,
                 "reviewCount": 1200
             },
-            "image": ["data/images/M006/01.jpg"],
+            "image": ["media/images/museus/M006/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Avantguardes" },
@@ -274,7 +274,7 @@
                 "ratingValue": 4.5,
                 "reviewCount": 890
             },
-            "image": ["data/images/M007/01.jpg"],
+            "image": ["media/images/museus/M007/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Disseny / Modernisme" },
@@ -314,7 +314,7 @@
                 "ratingValue": 4.7,
                 "reviewCount": 1500
             },
-            "image": ["data/images/M008/01.jpg"],
+            "image": ["media/images/museus/M008/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
@@ -354,7 +354,7 @@
                 "ratingValue": 4.8,
                 "reviewCount": 120
             },
-            "image": ["data/images/M009/01.jpg"],
+            "image": ["media/images/museus/M009/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani" },
@@ -394,7 +394,7 @@
                 "ratingValue": 4.4,
                 "reviewCount": 340
             },
-            "image": ["data/images/M010/01.jpg"],
+            "image": ["media/images/museus/M010/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Costumisme / Etnografia" },
@@ -434,7 +434,7 @@
                 "ratingValue": 4.6,
                 "reviewCount": 1100
             },
-            "image": ["data/images/M012/01.jpg"],
+            "image": ["media/images/museus/M012/01.jpg"],
             "video_url": null,
             "additionalProperty": [
                 { "@type": "PropertyValue", "name": "artStyle", "value": "Art Contemporani / Clàssic" },

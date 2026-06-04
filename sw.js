@@ -2,7 +2,7 @@
  * Museus Illes Balears — Service Worker
  * Estratègia: cache-first per al shell, network-first per als JSON, fallback offline.
  */
-const CACHE = 'museus-v4';
+const CACHE = 'museus-v5';
 const SHELL = [
   './',
   './index.html',
@@ -40,7 +40,7 @@ const SHELL = [
   './data/museus.json',
   './data/rutes.json',
   './data/team.json',
-  './data/images/manifest.json',
+  './media/images/museus/manifest.json',
   './media/logo.svg'
 ];
 
